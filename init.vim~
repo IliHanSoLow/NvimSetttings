@@ -17,5 +17,6 @@ if exists('g:vscode')
     source C:\\Users\\Kind_\\AppData\\Local\\nvim\\vscode\\settings.vim
     Plug 'easymotion/vim-easymotion'
 else
-:set relativenumber
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
 endif
