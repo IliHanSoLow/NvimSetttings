@@ -13,9 +13,13 @@ let $LANG = 'en_US'
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 
+set expandtab
+set tabstop=2
+set shiftwidth=2
+
 if exists('g:vscode')
     source C:\\Users\\Kind_\\AppData\\Local\\nvim\\vscode\\settings.vim
     Plug 'easymotion/vim-easymotion'
 else
-:set relativenumber
+    set rnu
 endif
