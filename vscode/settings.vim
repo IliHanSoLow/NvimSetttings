@@ -74,5 +74,5 @@ nnoremap <silent> <Space> :call VSCodeNotify('whichkey.show')<CR>
 xnoremap <silent> <Space> :call VSCodeNotify('whichkey.show')<CR>
 
 " absolute line numbers in insert Mode else hybrid line numbers
-autocmd InsertEnter * :call VSCodeNotify('settings.cycle.lineNumberOn')
-autocmd InsertLeave * :call VSCodeNotify('settings.cycle.lineNumberRel')
+" autocmd InsertEnter * :call VSCodeNotify('settings.cycle.lineNumberOn')
+" autocmd InsertLeave * :call VSCodeNotify('settings.cycle.lineNumberRel')

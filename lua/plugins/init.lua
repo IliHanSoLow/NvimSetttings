@@ -1,0 +1,5 @@
+require("plugins.lazy")
+require("plugins.plugins")
+require("plugins.comments")
+require("plugins.treesitter")
+require("plugins.conform")
