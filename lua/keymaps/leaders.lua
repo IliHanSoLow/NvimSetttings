@@ -65,7 +65,11 @@ wk.register({
 		},
 		o = {
 			name = "Open",
+			o = { vim.cmd.ObsidianQuickSwitch, "Obsidian" },
+			d = { vim.cmd.ObsidianToday, "ObsidianToday" },
+			s = { "<cmd>edit ~/Dokumente/Obsidian Vault/notes/Scratch.md<cr>", "open scratch" },
 			p = { "<cmd>NvimTreeToggle<cr>", "NvimTree" },
+			t = { vim.cmd.ToggleTerm, "ToggleTerm" },
 		},
 		b = {
 			name = "+Buffers",
