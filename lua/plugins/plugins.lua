@@ -7,20 +7,30 @@ require("lazy").setup({
 	"folke/neodev.nvim",
 	{
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.5",
+		branch = "0.1.x",
 		dependencies = { "nvim-lua/plenary.nvim" },
-	},
-	-- NvimTree
-	{
-		"nvim-tree/nvim-tree.lua",
-		version = "*",
-		lazy = false,
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
 		config = function()
-			require("nvim-tree").setup({})
+			require("telescope").setup({
+				extensions = {
+					["ui-select"] = {
+						require("telescope.themes").get_dropdown({}),
+					},
+					file_browser = {
+						-- theme = "ivy",
+						-- disables netrw and use telescope-file-browser in its place
+						hijack_netrw = true,
+					},
+				},
+			})
+			require("telescope").load_extension("ui-select")
+			require("telescope").load_extension("fzf")
+			require("telescope").load_extension("file_browser")
 		end,
+	},
+	"nvim-telescope/telescope-ui-select.nvim",
+	{
+		"nvim-telescope/telescope-fzf-native.nvim",
+		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 	},
 	{
 		"lewis6991/gitsigns.nvim",
@@ -309,7 +319,28 @@ require("lazy").setup({
 		"lukas-reineke/indent-blankline.nvim",
 		event = "User FileOpened",
 	},
-	"rebelot/kanagawa.nvim",
+	{
+		"rebelot/kanagawa.nvim",
+		config = function()
+			require("kanagawa").setup({
+				compile = false, -- enable compiling the colorscheme
+				undercurl = true, -- enable undercurls
+				commentStyle = { italic = true },
+				functionStyle = {},
+				keywordStyle = { italic = true },
+				statementStyle = { bold = true },
+				typeStyle = {},
+				transparent = false, -- do not set background color
+				dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+				terminalColors = true, -- define vim.g.terminal_color_{0,17}
+				colors = { -- add/modify theme and palette colors
+					palette = {},
+					theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
+				},
+				theme = "wave", -- Load "wave" theme when 'background' option is not set
+			})
+		end,
+	},
 	{
 		"xiyaowong/transparent.nvim",
 		config = function()
@@ -386,7 +417,11 @@ require("lazy").setup({
 	{ "hrsh7th/nvim-cmp" },
 	{ "L3MON4D3/LuaSnip" },
 	"folke/trouble.nvim",
-	"SeniorMars/typst.nvim",
+	{
+		"kaarmu/typst.vim",
+		ft = "typst",
+		lazy = false,
+	},
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
@@ -405,8 +440,8 @@ require("lazy").setup({
 		-- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
 		-- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
 		event = {
-			"BufReadPre " .. vim.fn.expand("~") .. "/Dokumente/Obsidian Vault/**.md",
-			"BufNewFile " .. vim.fn.expand("~") .. "/Dokumente/Obsidian Vault/**.md",
+			"BufReadPre " .. vim.fn.expand("~") .. "/Dokumente/ObsidianVault/**.md",
+			"BufNewFile " .. vim.fn.expand("~") .. "/Dokumente/ObsidianVault/**.md",
 		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -415,7 +450,7 @@ require("lazy").setup({
 			workspaces = {
 				{
 					name = "personal",
-					path = "~/Dokumente/Obsidian Vault",
+					path = "~/Dokumente/ObsidianVault",
 					overrides = {
 						notes_subdir = "notes",
 					},
@@ -430,34 +465,6 @@ require("lazy").setup({
 				alias_format = "%B %-d, %Y",
 				-- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
 				template = nil,
-			},
-			-- Optional, completion of wiki links, local markdown links, and tags using nvim-cmp.
-			completion = {
-				-- Set to false to disable completion.
-				nvim_cmp = true,
-
-				-- Trigger completion at 2 chars.
-				min_chars = 2,
-
-				-- Where to put new notes created from completion. Valid options are
-				--  * "current_dir" - put new notes in same directory as the current buffer.
-				--  * "notes_subdir" - put new notes in the default notes subdirectory.
-				new_notes_location = "current_dir",
-
-				-- Control how wiki links are completed with these (mutually exclusive) options:
-				--
-				-- 1. Whether to add the note ID during completion.
-				-- E.g. "[[Foo" completes to "[[foo|Foo]]" assuming "foo" is the ID of the note.
-				-- Mutually exclusive with 'prepend_note_path' and 'use_path_only'.
-				prepend_note_id = true,
-				-- 2. Whether to add the note path during completion.
-				-- E.g. "[[Foo" completes to "[[notes/foo|Foo]]" assuming "notes/foo.md" is the path of the note.
-				-- Mutually exclusive with 'prepend_note_id' and 'use_path_only'.
-				prepend_note_path = false,
-				-- 3. Whether to only use paths during completion.
-				-- E.g. "[[Foo" completes to "[[notes/foo]]" assuming "notes/foo.md" is the path of the note.
-				-- Mutually exclusive with 'prepend_note_id' and 'prepend_note_path'.
-				use_path_only = false,
 			},
 			mappings = {
 				-- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
@@ -516,5 +523,9 @@ require("lazy").setup({
 		},
 		opts = {},
 	},
-	{ "edluffy/hologram.nvim" },
+	"habamax/vim-godot",
+	{
+		"nvim-telescope/telescope-file-browser.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+	},
 })

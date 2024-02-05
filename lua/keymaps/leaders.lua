@@ -53,6 +53,8 @@ wk.register({
 				end,
 				"Open file Grep",
 			},
+			h = { "<cmd>Telescope help_tags<cr>", "Find in Help" },
+			m = { "<cmd>Telescope man_pages<cr>", "Find in ManPages" },
 		},
 		t = {
 			name = "+Diagnostics",
@@ -68,19 +70,23 @@ wk.register({
 			o = { vim.cmd.ObsidianQuickSwitch, "Obsidian" },
 			d = { vim.cmd.ObsidianToday, "ObsidianToday" },
 			s = { "<cmd>edit ~/Dokumente/Obsidian Vault/notes/Scratch.md<cr>", "open scratch" },
-			p = { "<cmd>NvimTreeToggle<cr>", "NvimTree" },
+			p = { "<cmd>Telescope file_browser<cr>", "Telescope Files" },
 			t = { vim.cmd.ToggleTerm, "ToggleTerm" },
 		},
 		b = {
 			name = "+Buffers",
 			p = { "<cmd>bprevious<cr>", "PrevBuf" },
 			n = { "<cmd>bnext<cr>", "NextBuf" },
-			i = { "<cmd>buffers<cr>", "ListBufs" },
+			i = { "<cmd>Telescope buffers<cr>", "ListBufs" },
 			k = { "<cmd>bd<cr>", "KillBuf" },
 		},
 		g = {
 			name = "+git",
 			g = { vim.cmd.Neogit, "openNeogit" },
+		},
+		r = {
+			name = "+reload",
+			r = { "<cmd>e!<cr>", "current buffer" },
 		},
 	},
 })

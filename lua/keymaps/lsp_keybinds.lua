@@ -7,7 +7,10 @@ lsp_zero.on_attach(function(client, bufnr)
 		buffer = bufnr,
 		preserve_mappings = false,
 	})
+	vim.keymap.set("n", "gh", "<cmd>lua vim.lsp.buf.code_action()<CR>", { buffer = bufnr })
 end)
+
+require("lspconfig").ocamllsp.setup{}
 
 require("mason").setup({})
 require("mason-lspconfig").setup({
@@ -23,6 +26,9 @@ local cmp_action = require("lsp-zero").cmp_action()
 cmp.setup({
 	sources = {
 		{ name = "path" },
+		{ name = "nvim_lsp", keyword_length = 1 },
+		{ name = "buffer", keyword_length = 3 },
+		{ name = "luasnip", keyword_length = 2 },
 	},
 	mapping = cmp.mapping.preset.insert({
 		-- `Enter` key to confirm completion
@@ -46,4 +52,17 @@ lsp_zero.set_sign_icons({
 	warn = "▲",
 	hint = "⚑",
 	info = "»",
+})
+
+require("mason-lspconfig").setup({
+	handlers = {
+		lsp_zero.default_setup,
+		tsserver = function()
+			require("lspconfig").rust_analyzer.setup({
+				check = {
+					command = "clippy",
+				},
+			})
+		end,
+	},
 })
