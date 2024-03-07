@@ -69,7 +69,7 @@ wk.register({
 			name = "Open",
 			o = { vim.cmd.ObsidianQuickSwitch, "Obsidian" },
 			d = { vim.cmd.ObsidianToday, "ObsidianToday" },
-			s = { "<cmd>edit ~/Dokumente/Obsidian Vault/notes/Scratch.md<cr>", "open scratch" },
+			s = { "<cmd>edit /bigssd/Dokumente/Obsidian Vault/notes/Scratch.md<cr>", "open scratch" },
 			p = { "<cmd>Telescope file_browser<cr>", "Telescope Files" },
 			t = { vim.cmd.ToggleTerm, "ToggleTerm" },
 		},

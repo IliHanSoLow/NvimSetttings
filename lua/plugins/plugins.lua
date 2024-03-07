@@ -31,7 +31,7 @@ require("lazy").setup({
 	"nvim-telescope/telescope-ui-select.nvim",
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+		build = "make",
 	},
 	{
 		"lewis6991/gitsigns.nvim",
@@ -441,8 +441,8 @@ require("lazy").setup({
 		-- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
 		-- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
 		event = {
-			"BufReadPre " .. vim.fn.expand("~") .. "/Dokumente/ObsidianVault/**.md",
-			"BufNewFile " .. vim.fn.expand("~") .. "/Dokumente/ObsidianVault/**.md",
+			"BufReadPre /bigssd/Dokumente/ObsidianVault/**.md",
+			"BufNewFile /Dokumente/ObsidianVault/**.md",
 		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -451,7 +451,7 @@ require("lazy").setup({
 			workspaces = {
 				{
 					name = "personal",
-					path = "~/Dokumente/ObsidianVault",
+					path = "/bigssd/Dokumente/ObsidianVault",
 					overrides = {
 						notes_subdir = "notes",
 					},
@@ -529,4 +529,12 @@ require("lazy").setup({
 		"nvim-telescope/telescope-file-browser.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
 	},
+	"tpope/vim-sleuth",
+	{
+		"j-hui/fidget.nvim",
+		opts = {
+			-- options
+		},
+	},
+	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 })

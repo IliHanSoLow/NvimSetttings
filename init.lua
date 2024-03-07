@@ -7,7 +7,8 @@ else
 	require("plugins")
 
 	require("keymaps")
-	vim.cmd("colorscheme kanagawa")
+	vim.cmd.colorscheme("catppuccin-macchiato")
+	-- vim.cmd("colorscheme kanagawa")
 	-- vim.cmd("colorscheme nightfox")
 	-- vim.cmd("colorscheme iceberg")
 	-- vim.cmd("colorscheme carbonfox")
