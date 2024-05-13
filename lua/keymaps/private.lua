@@ -27,6 +27,13 @@ vim.g.mapleader = " "
 
 vim.opt.conceallevel = 1
 
+vim.opt.guicursor = "n-v-c:blinkon0,i:blinkon1"
+
+vim.cmd("set smartcase")
+
+vim.cmd("set cursorline | highlight clear CursorLine")
+vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#c6a0f6", bold = true })
+
 --------------------------------------------------
 
 vim.keymap.set("v", "J", ":m'>+1<CR>gv=gv")
@@ -55,3 +62,18 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+
+---------------------------------------
+_G.toggle_colorscheme = function()
+	-- Check if the current colorscheme is catppuccin-machiato
+	if vim.o.termguicolors and vim.o.background == "dark" then
+		-- If it is, switch to cyberdream
+		vim.cmd("colorscheme cyberdream")
+		vim.o.background = "light"
+	else
+		-- Otherwise, switch to catppuccin-machiato
+		vim.cmd.colorscheme("catppuccin-macchiato")
+		vim.o.background = "dark"
+	end
+end
+vim.api.nvim_create_user_command("MachtToggle", _G.toggle_colorscheme, {})
