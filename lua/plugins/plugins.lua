@@ -210,6 +210,7 @@ require("lazy").setup({
 		-- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
 		event = {
 			"BufReadPre /bigssd/Dokumente/ObsidianVault/**.md",
+			"BufNewFile /bigssd/Dokumente/ObsidianVault/**.md",
 		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
