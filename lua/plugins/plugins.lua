@@ -314,7 +314,6 @@ require("lazy").setup({
 		},
 	},
 	{ "tamago324/nlsp-settings.nvim" },
-	{ "yorik1984/cobol.nvim" },
 	{ "uga-rosa/ccc.nvim" },
 	{
 		"scottmckendry/cyberdream.nvim",
