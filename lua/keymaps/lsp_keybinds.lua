@@ -45,8 +45,12 @@ mason_lspconfig.setup({
 	},
 })
 
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+
+local luasnip = require("luasnip")
 local cmp = require("cmp")
 local cmp_action = require("lsp-zero").cmp_action()
+local select_opts = { behavior = cmp.SelectBehavior.Select }
 
 cmp.setup({
 	sources = {
@@ -54,6 +58,22 @@ cmp.setup({
 		{ name = "nvim_lsp", keyword_length = 1 },
 		{ name = "buffer", keyword_length = 3 },
 		{ name = "luasnip", keyword_length = 2 },
+	},
+	window = {
+		documentation = cmp.config.window.bordered(),
+	},
+	formatting = {
+		fields = { "menu", "abbr", "kind" },
+		format = function(entry, item)
+			local menu_icon = {
+				nvim_lsp = "LSP",
+				luasnip = "SNIP",
+				buffer = "BUF",
+				path = "PATH",
+			}
+			item.menu = menu_icon[entry.source.name]
+			return item
+		end,
 	},
 	mapping = cmp.mapping.preset.insert({
 		-- `Enter` key to confirm completion
