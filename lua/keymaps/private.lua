@@ -23,7 +23,7 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "0"
+vim.opt.colorcolumn = "80"
 
 vim.g.mapleader = " "
 
@@ -76,4 +76,9 @@ _G.toggle_colorscheme = function()
 		vim.o.background = "dark"
 	end
 end
-vim.api.nvim_create_user_command("MachtToggle", _G.toggle_colorscheme, {})
+vim.api.nvim_create_user_command("ToggleColorscheme", _G.toggle_colorscheme, {})
+
+vim.keymap.set("n", "<leader>ok", "<cmd>cd /bigssd/Dokumente/ObsidianVault/<CR>")
+
+-- Disable autoformat
+vim.g.disable_autoformat = true

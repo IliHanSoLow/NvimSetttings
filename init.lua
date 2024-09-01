@@ -5,7 +5,14 @@ if vim.g.vscode then
 else
 	vim.g.mapleader = " "
 	require("plugins")
-	vim.cmd.colorscheme("catppuccin-macchiato")
+
+	if os.getenv("COLOR_THEME") == "light" then
+		vim.cmd("colorscheme cyberdream")
+		vim.o.background = "light"
+	else
+		vim.cmd.colorscheme("catppuccin-macchiato")
+		vim.o.background = "dark"
+	end
 	-- vim.cmd.colorscheme("cyberdream-light")
 	-- vim.cmd("colorscheme kanagawa")
 	-- vim.cmd("colorscheme nightfox")

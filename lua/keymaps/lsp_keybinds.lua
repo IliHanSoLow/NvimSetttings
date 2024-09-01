@@ -36,6 +36,7 @@ lspconfig.rust_analyzer.setup({
 	},]]
 })
 lspconfig.nim_langserver.setup({})
+lspconfig.gopls.setup({})
 
 mason.setup({})
 mason_lspconfig.setup({
