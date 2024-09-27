@@ -1,7 +1,13 @@
 vim.cmd("set number relativenumber")
 if vim.g.vscode then
-	vim.cmd("set clipboard=unnamedplus")
-	vim.cmd("source ~/.config/nvim/vscode/settings.vim")
+	local is_windows = string.find(vim.loop.os_uname().version, "Windows") ~= nil
+	if (is_windows) then
+		vim.cmd("source ~\\AppData\\Local\\nvim\\vscode\\settings.vim")
+		vim.cmd("set clipboard=unnamedplus")
+	else
+		vim.cmd("source ~/.config/nvim/vscode/settings.vim")
+	end
+	
 else
 	vim.g.mapleader = " "
 	require("plugins")
