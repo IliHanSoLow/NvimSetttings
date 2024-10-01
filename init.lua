@@ -16,7 +16,8 @@ else
 		vim.cmd("colorscheme cyberdream")
 		vim.o.background = "light"
 	else
-		vim.cmd.colorscheme("catppuccin-macchiato")
+		-- vim.cmd.colorscheme("catppuccin-macchiato")
+		vim.cmd.colorscheme("gruber-darker")
 		vim.o.background = "dark"
 	end
 	-- vim.cmd.colorscheme("cyberdream-light")

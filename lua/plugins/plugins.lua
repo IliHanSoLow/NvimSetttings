@@ -374,4 +374,5 @@ require("lazy").setup({
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 	},
 	"andweeb/presence.nvim",
+	"blazkowolf/gruber-darker.nvim"
 })
