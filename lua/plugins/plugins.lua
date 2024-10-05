@@ -155,7 +155,6 @@ require("lazy").setup({
 	},
 	"EdenEast/nightfox.nvim",
 	"oahlen/iceberg.nvim",
-	"sitiom/nvim-numbertoggle",
 	"nvim-treesitter/playground",
 	"ThePrimeagen/harpoon",
 	"mbbill/undotree",
@@ -374,5 +373,20 @@ require("lazy").setup({
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 	},
 	"andweeb/presence.nvim",
-	"blazkowolf/gruber-darker.nvim"
+	"blazkowolf/gruber-darker.nvim",
+	{
+		'echasnovski/mini.nvim', version = false,
+		config = function()
+			require("mini.basics").setup({})
+			require("mini.ai").setup({})
+			require("mini.jump").setup({})
+			require("mini.surround").setup({})
+			require("mini.move").setup({mappings = {
+				left = '<C-h>',
+				right = '<C-l>',
+				down = '<C-j>',
+				up = '<C-k>',
+			}})
+		end,
+	},
 })

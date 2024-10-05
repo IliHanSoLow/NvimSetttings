@@ -17,7 +17,7 @@ vim.opt.smartcase = true
 
 vim.opt.termguicolors = true
 
-vim.opt.scrolloff = 8
+-- vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
@@ -31,7 +31,9 @@ vim.opt.conceallevel = 1
 
 vim.opt.guicursor = "n-v-c:blinkon0,i:blinkon1"
 
-vim.cmd("set smartcase")
+vim.opt.smartcase = true
+vim.opt.linebreak = false
+vim.opt.wrap = true
 
 vim.cmd("set cursorline | highlight clear CursorLine")
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#c6a0f6", bold = true })
@@ -42,10 +44,10 @@ vim.keymap.set("v", "J", ":m'>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m'<-2<CR>gv=gv")
 
 vim.keymap.set("n", "J", "mzJ`z")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+-- vim.keymap.set("n", "<C-d>", "<C-d>zz")
+-- vim.keymap.set("n", "<C-u>", "<C-u>zz")
+-- vim.keymap.set("n", "n", "nzzzv")
+-- vim.keymap.set("n", "N", "Nzzzv")
 
 vim.keymap.set("x", "<leader>p", '"_dP')
 
@@ -56,8 +58,8 @@ vim.keymap.set("n", "<leader>Y", '"+Y')
 vim.keymap.set("n", "<leader>d", '"_d')
 vim.keymap.set("v", "<leader>d", '"_d')
 
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
@@ -82,3 +84,5 @@ vim.keymap.set("n", "<leader>ok", "<cmd>cd /bigssd/Dokumente/ObsidianVault/<CR>"
 
 -- Disable autoformat
 vim.g.disable_autoformat = true
+
+vim.cmd("set cmdheight=0")
