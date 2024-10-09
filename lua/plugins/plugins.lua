@@ -68,7 +68,7 @@ require("lazy").setup({
 	},
 
 	-- Terminal
-	{
+	--[[ {
 		"akinsho/toggleterm.nvim",
 		branch = "main",
 		cmd = {
@@ -79,15 +79,19 @@ require("lazy").setup({
 			"ToggleTermSendVisualLines",
 			"ToggleTermSendVisualSelection",
 		},
-	},
+	}, ]]
 	{
 		"RRethy/vim-illuminate",
 		event = "User FileOpened",
 	},
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		event = "User FileOpened",
-	},
+	-- {
+	-- 	"lukas-reineke/indent-blankline.nvim",
+	-- 	event = "User FileOpened",
+	-- 	main = "ibl",
+	-- 	---@module "ibl"
+	-- 	---@type ibl.config
+	-- 	opts = {},
+	-- },
 	{
 		"rebelot/kanagawa.nvim",
 		config = function()
@@ -110,7 +114,7 @@ require("lazy").setup({
 			})
 		end,
 	},
-	{
+	--[[ {
 		"xiyaowong/transparent.nvim",
 		config = function()
 			require("transparent").setup({ -- Optional, you don't have to run setup.
@@ -148,7 +152,7 @@ require("lazy").setup({
 				exclude_groups = {}, -- table: groups you don't want to clear
 			})
 		end,
-	},
+	}, ]]
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
@@ -226,11 +230,11 @@ require("lazy").setup({
 		ft = "typst",
 		lazy = false,
 	},
-	{
+	--[[ {
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		opts = {}, -- this is equalent to setup({}) function
-	},
+	}, ]]
 	{
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
@@ -315,7 +319,7 @@ require("lazy").setup({
 			return string.format("%s-", os.time())
 		end,
 	},
-	"https://github.com/hrsh7th/cmp-path",
+	"hrsh7th/cmp-path",
 	{
 		"epwalsh/pomo.nvim",
 		version = "*", -- Recommended, use latest release instead of latest commit
@@ -372,7 +376,7 @@ require("lazy").setup({
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 	},
-	"andweeb/presence.nvim",
+	-- "andweeb/presence.nvim",
 	"blazkowolf/gruber-darker.nvim",
 	{
 		'echasnovski/mini.nvim', version = false,
@@ -380,7 +384,19 @@ require("lazy").setup({
 			require("mini.basics").setup({})
 			require("mini.ai").setup({})
 			require("mini.jump").setup({})
-			require("mini.surround").setup({})
+			require("mini.surround").setup({
+				mappings = {
+					add = '<leader>sa',
+					delete = '<leader>sd',
+					find = '<leader>sf',
+					find_left = '<leader>sF',
+					highlight = '<leader>sh',
+					replace = '<leader>sr',
+					update_n_lines = '<leader>sn',
+					suffix_last = 'l',
+					suffix_next = 'n',
+				}
+			})
 			require("mini.move").setup({mappings = {
 				left = '<C-h>',
 				right = '<C-l>',
@@ -389,4 +405,7 @@ require("lazy").setup({
 			}})
 		end,
 	},
+	"rhysd/vim-llvm",
+	-- "LudoPinelli/comment-box.nvim",
+	"Airbus5717/c3.vim"
 })

@@ -3,81 +3,106 @@ local wk = require("which-key")
 local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")
 
-wk.register({
-	["<leader>"] = {
-		qq = { vim.cmd.q, "Quit" },
-		a = { mark.add_file, "Harpoon add File" },
-		hh = { "<cmd>Alpha<cr>", "Home" },
-		h = {
-			name = "+harpoon",
-			l = { ui.toggle_quick_menu, "toggle_menu" },
-			a = {
-				function()
-					ui.nav_file(1)
-				end,
-				"open 1",
-			},
-			b = {
-				function()
-					ui.nav_file(2)
-				end,
-				"open 2",
-			},
-			c = {
-				function()
-					ui.nav_file(3)
-				end,
-				"open 3",
-			},
-			d = {
-				function()
-					ui.nav_file(4)
-				end,
-				"open 4",
-			},
-		},
-
-		u = { vim.cmd.UndotreeToggle, "UndoTree" },
-
-		f = {
-			name = "+file",
-			s = { vim.cmd.w, "Save" },
-			as = { vim.cmd.wa, "Save All" },
-			f = { "<cmd>Telescope find_files<cr>", "Find File" },
-			r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-			n = { "<cmd>enew<cr>", "New File" },
-			g = { builtin.git_files, {}, "Open files in Git" },
-			p = {
-				function()
-					builtin.grep_string({ search = vim.fn.input("Grep > ") })
-				end,
-				"Open file Grep",
-			},
-			h = { "<cmd>Telescope help_tags<cr>", "Find in Help" },
-			m = { "<cmd>Telescope man_pages<cr>", "Find in ManPages" },
-		},
-		o = {
-			name = "Open",
-			o = { vim.cmd.ObsidianQuickSwitch, "Obsidian" },
-			d = { vim.cmd.ObsidianToday, "ObsidianToday" },
-			s = { "<cmd>edit /bigssd/Dokumente/ObsidianVault/notes/Scratch.md<cr>", "open scratch" },
-			p = { "<cmd>Telescope file_browser<cr>", "Telescope Files" },
-			t = { vim.cmd.ToggleTerm, "ToggleTerm" },
-		},
-		b = {
-			name = "+Buffers",
-			p = { "<cmd>bprevious<cr>", "PrevBuf" },
-			n = { "<cmd>bnext<cr>", "NextBuf" },
-			i = { "<cmd>Telescope buffers<cr>", "ListBufs" },
-			k = { "<cmd>bd<cr>", "KillBuf" },
-		},
-		g = {
-			name = "+git",
-			g = { vim.cmd.Neogit, "openNeogit" },
-		},
-		r = {
-			name = "+reload",
-			r = { "<cmd>e!<cr>", "current buffer" },
-		},
+wk.add({
+	{
+		"<leader>a",
+		function()
+			mark.add_file()
+		end,
+		desc = "Harpoon add File",
 	},
-})
+	{ "<leader>b", group = "Buffers" },
+	{ "<leader>bi", "<cmd>Telescope buffers<cr>", desc = "ListBufs" },
+	{ "<leader>bk", "<cmd>bd<cr>", desc = "KillBuf" },
+	{ "<leader>bn", "<cmd>bnext<cr>", desc = "NextBuf" },
+	{ "<leader>bp", "<cmd>bprevious<cr>", desc = "PrevBuf" },
+	{ "<leader>f", group = "file" },
+	{
+		"<leader>fas",
+		function()
+			vim.cmd.wa()
+		end,
+		desc = "Save All",
+	},
+	{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File" },
+	{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Find in Help" },
+	{ "<leader>fm", "<cmd>Telescope man_pages<cr>", desc = "Find in ManPages" },
+	{ "<leader>fn", "<cmd>enew<cr>", desc = "New File" },
+	{ "<leader>fc", ":e<space>", desc = "Open new file with name" },
+	{
+		"<leader>fp",
+		function()
+			builtin.grep_string({ search = vim.fn.input("Grep > ") })
+		end,
+		desc = "Open file Grep",
+	},
+	{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File" },
+	{ "<leader>fs", "<cmd>w<cr>", desc = "Save" },
+	{ "<leader>g", group = "git" },
+	{ "<leader>gg", "<cmd>Neogit<cr>", desc = "openNeogit" },
+	{ "<leader>h", group = "harpoon" },
+	{
+		"<leader>ha",
+		function()
+			ui.nav_file(1)
+		end,
+		desc = "open 1",
+	},
+	{
+		"<leader>hb",
+		function()
+			ui.nav_file(2)
+		end,
+		desc = "open 2",
+	},
+	{
+		"<leader>hc",
+		function()
+			ui.nav_file(3)
+		end,
+		desc = "open 3",
+	},
+	{
+		"<leader>hd",
+		function()
+			ui.nav_file(4)
+		end,
+		desc = "open 4",
+	},
+	{ "<leader>hh", "<cmd>Alpha<cr>", desc = "Home" },
+	{
+		"<leader>hl",
+		function()
+			ui.toggle_quick_menu()
+		end,
+		desc = "toggle_menu",
+	},
+	{ "<leader>o", group = "Open" },
+	{
+		"<leader>od",
+		function()
+			vim.cmd.ObsidianToday()
+		end,
+		desc = "ObsidianToday",
+	},
+	{
+		"<leader>oo",
+		function()
+			vim.cmd.ObsidianQuickSwitch()
+		end,
+		desc = "Obsidian",
+	},
+	{ "<leader>op", "<cmd>Telescope file_browser<cr>", desc = "Telescope Files" },
+	{ "<leader>os", "<cmd>edit /bigssd/Dokumente/ObsidianVault/notes/Scratch.md<cr>", desc = "open scratch" },
+	{ "<leader>qq", "<cmd>q<cr>", desc = "Quit" },
+	{ "<leader>r", group = "reload" },
+	{ "<leader>rr", "<cmd>e!<cr>", desc = "current buffer" },
+	{
+		"<leader>u",
+		function()
+			vim.cmd.UndotreeToggle()
+		end,
+		desc = "UndoTree",
+	},
+}
+)

@@ -9,6 +9,9 @@ if vim.g.vscode then
 	end
 	
 else
+	if vim.g.neovide then
+		require("neovide")
+	end
 	vim.g.mapleader = " "
 	require("plugins")
 
