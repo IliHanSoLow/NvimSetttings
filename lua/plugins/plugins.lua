@@ -4,9 +4,9 @@ require("lazy").setup({
 		"folke/neodev.nvim",
 		lazy = true,
 	},
-	"folke/neodev.nvim",
 	{
 		"nvim-telescope/telescope.nvim",
+		lazy = true,
 		branch = "0.1.x",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
@@ -21,41 +21,49 @@ require("lazy").setup({
 						hijack_netrw = true,
 						no_ignore = true,
 					},
+
+					-- Config for projects
+					project = {
+						base_dirs = {
+							"/bigssd/Dokumente/git/",
+						}
+					}
 				},
+
 			})
 			require("telescope").load_extension("ui-select")
 			require("telescope").load_extension("fzf")
 			require("telescope").load_extension("file_browser")
+			require("telescope").load_extension("project")
 		end,
 	},
-	"nvim-telescope/telescope-ui-select.nvim",
+	{ "nvim-telescope/telescope-ui-select.nvim", lazy = true },
+	{ "nvim-telescope/telescope-project.nvim", lazy = true },
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
 		build = "make",
+		lazy = true,
 	},
 	{
 		"lewis6991/gitsigns.nvim",
 		event = "User FileOpened",
 		cmd = "Gitsigns",
+		lazy = true,
 	},
 	{
 		"numToStr/Comment.nvim",
 		keys = { { "gc", mode = { "n", "v" } }, { "gb", mode = { "n", "v" } } },
 		event = "User FileOpened",
+		lazy = true,
 	},
 	{
 		"folke/which-key.nvim",
 		cmd = "WhichKey",
 		event = "VeryLazy",
-	},
-	{
-		"ahmedkhalf/project.nvim",
-		event = "VimEnter",
-		cmd = "Telescope projects",
+		lazy = true,
 	},
 	{
 		"nvim-tree/nvim-web-devicons",
-		lazy = true,
 	},
 	{
 		"SmiteshP/nvim-navic",
@@ -82,7 +90,8 @@ require("lazy").setup({
 	}, ]]
 	{
 		"RRethy/vim-illuminate",
-		event = "User FileOpened",
+		-- event = "User FileOpened",
+		-- lazy = true,
 	},
 	-- {
 	-- 	"lukas-reineke/indent-blankline.nvim",
@@ -157,13 +166,14 @@ require("lazy").setup({
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 	},
-	"EdenEast/nightfox.nvim",
-	"oahlen/iceberg.nvim",
-	"nvim-treesitter/playground",
-	"ThePrimeagen/harpoon",
+	{"EdenEast/nightfox.nvim", lazy = true},
+	{"oahlen/iceberg.nvim", lazy = true},
+	{"nvim-treesitter/playground", lazy = true},
+	{"ThePrimeagen/harpoon", lazy = true},
 	"mbbill/undotree",
 	{
 		"NeogitOrg/neogit",
+		cmd = "Neogit",
 		dependencies = {
 			"nvim-lua/plenary.nvim", -- required
 			"sindrets/diffview.nvim", -- optional - Diff integration
@@ -172,9 +182,10 @@ require("lazy").setup({
 			"nvim-telescope/telescope.nvim", -- optional
 		},
 		config = true,
+		lazy = true,
 	},
 	"easymotion/vim-easymotion",
-	"ThePrimeagen/vim-be-good",
+	{"ThePrimeagen/vim-be-good", lazy = true},
 	{
 		"stevearc/conform.nvim",
 		opts = {},
@@ -187,7 +198,11 @@ require("lazy").setup({
 	{ "neovim/nvim-lspconfig" },
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "hrsh7th/nvim-cmp" },
-	{ "L3MON4D3/LuaSnip" },
+	{
+		"L3MON4D3/LuaSnip",
+		dependencies = { "rafamadriz/friendly-snippets" },
+		lazy = true,
+	},
 	{
 		"folke/trouble.nvim",
 		opts = {}, -- for default options, refer to the configuration section for custom setup.
@@ -224,11 +239,12 @@ require("lazy").setup({
 				desc = "Quickfix List (Trouble)",
 			},
 		},
+		lazy = true,
 	},
 	{
 		"kaarmu/typst.vim",
 		ft = "typst",
-		lazy = false,
+		lazy = true,
 	},
 	--[[ {
 		"windwp/nvim-autopairs",
@@ -243,7 +259,7 @@ require("lazy").setup({
 	{
 		"epwalsh/obsidian.nvim",
 		version = "*", -- recommended, use latest release instead of latest commit
-		lazy = false,
+		lazy = true,
 		-- ft = "markdown",
 		-- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
 		-- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
@@ -331,10 +347,11 @@ require("lazy").setup({
 		},
 		opts = {},
 	},
-	"habamax/vim-godot",
+	{"habamax/vim-godot", lazy = true},
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+		lazy = true,
 	},
 	"tpope/vim-sleuth",
 	{
@@ -353,7 +370,7 @@ require("lazy").setup({
 		},
 	},
 	{ "tamago324/nlsp-settings.nvim" },
-	{ "uga-rosa/ccc.nvim" },
+	{ "uga-rosa/ccc.nvim", lazy = true },
 	{
 		"scottmckendry/cyberdream.nvim",
 		lazy = false,
@@ -405,7 +422,7 @@ require("lazy").setup({
 			}})
 		end,
 	},
-	"rhysd/vim-llvm",
+	{"rhysd/vim-llvm", lazy = true},
 	-- "LudoPinelli/comment-box.nvim",
-	"Airbus5717/c3.vim"
+	{"Airbus5717/c3.vim", lazy = true},
 })

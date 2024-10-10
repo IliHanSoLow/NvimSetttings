@@ -49,6 +49,7 @@ vim.keymap.set("n", "J", "mzJ`z")
 -- vim.keymap.set("n", "n", "nzzzv")
 -- vim.keymap.set("n", "N", "Nzzzv")
 
+vim.keymap.set("n", "<leader>p", '"+p')
 vim.keymap.set("x", "<leader>p", '"_dP')
 
 vim.keymap.set("n", "<leader>y", '"+y')
@@ -85,7 +86,7 @@ vim.keymap.set("n", "<leader>ok", "<cmd>cd /bigssd/Dokumente/ObsidianVault/<CR>"
 -- Disable autoformat
 vim.g.disable_autoformat = true
 
-vim.cmd("set cmdheight=0")
+-- vim.cmd("set cmdheight=0")
 
 -- Set default shell
 local handle = io.popen("which fish 2>/dev/null")

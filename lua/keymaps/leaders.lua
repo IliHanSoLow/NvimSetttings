@@ -30,12 +30,18 @@ wk.add({
 	{ "<leader>fn", "<cmd>enew<cr>", desc = "New File" },
 	{ "<leader>fc", ":e<space>", desc = "Open new file with name" },
 	{
-		"<leader>fp",
+		"<leader>fg",
 		function()
 			builtin.grep_string({ search = vim.fn.input("Grep > ") })
 		end,
-		desc = "Open file Grep",
 	},
+	{
+		"<leader>fp",
+		function()
+			require'telescope'.extensions.project.project{}
+		end,
+	},
+		desc = "Open file Grep",
 	{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File" },
 	{ "<leader>fs", "<cmd>w<cr>", desc = "Save" },
 	{ "<leader>g", group = "git" },
