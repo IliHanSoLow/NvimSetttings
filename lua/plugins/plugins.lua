@@ -1,9 +1,18 @@
 require("lazy").setup({
 	"folke/lazy.nvim",
 	{
-		"folke/neodev.nvim",
-		lazy = true,
+		"folke/lazydev.nvim",
+		ft = "lua", -- only load on lua files
+		opts = {
+			library = {
+				-- See the configuration section for more details
+				-- Load luvit types when the `vim.uv` word is found
+				{ path = "luvit-meta/library", words = { "vim%.uv" } },
+			},
+		},
 	},
+	{ "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
+
 	{
 		"nvim-telescope/telescope.nvim",
 		lazy = true,
@@ -47,7 +56,10 @@ require("lazy").setup({
 	{
 		"lewis6991/gitsigns.nvim",
 		event = "User FileOpened",
-		cmd = "Gitsigns",
+		config = function ()
+			require('gitsigns').setup()
+		end,
+		-- cmd = "Gitsigns",
 		lazy = true,
 	},
 	{
@@ -166,9 +178,9 @@ require("lazy").setup({
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 	},
-	{"EdenEast/nightfox.nvim", lazy = true},
-	{"oahlen/iceberg.nvim", lazy = true},
-	{"nvim-treesitter/playground", lazy = true},
+	"EdenEast/nightfox.nvim",
+	"oahlen/iceberg.nvim",
+	"nvim-treesitter/playground",
 	{"ThePrimeagen/harpoon", lazy = true},
 	"mbbill/undotree",
 	{
@@ -185,7 +197,7 @@ require("lazy").setup({
 		lazy = true,
 	},
 	"easymotion/vim-easymotion",
-	{"ThePrimeagen/vim-be-good", lazy = true},
+	{"ThePrimeagen/vim-be-good", cmd = "VimBeGood", lazy = true},
 	{
 		"stevearc/conform.nvim",
 		opts = {},
@@ -197,11 +209,19 @@ require("lazy").setup({
 	{ "VonHeikemen/lsp-zero.nvim", branch = "v3.x" },
 	{ "neovim/nvim-lspconfig" },
 	{ "hrsh7th/cmp-nvim-lsp" },
-	{ "hrsh7th/nvim-cmp" },
+	{ -- optional completion source for require statements and module annotations
+		"hrsh7th/nvim-cmp",
+		opts = function(_, opts)
+			opts.sources = opts.sources or {}
+			table.insert(opts.sources, {
+				name = "lazydev",
+				group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+			})
+		end,
+	},
 	{
 		"L3MON4D3/LuaSnip",
 		dependencies = { "rafamadriz/friendly-snippets" },
-		lazy = true,
 	},
 	{
 		"folke/trouble.nvim",
@@ -347,7 +367,7 @@ require("lazy").setup({
 		},
 		opts = {},
 	},
-	{"habamax/vim-godot", lazy = true},
+	"habamax/vim-godot",
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
@@ -422,7 +442,7 @@ require("lazy").setup({
 			}})
 		end,
 	},
-	{"rhysd/vim-llvm", lazy = true},
+	"rhysd/vim-llvm",
 	-- "LudoPinelli/comment-box.nvim",
-	{"Airbus5717/c3.vim", lazy = true},
+	"Airbus5717/c3.vim",
 })
