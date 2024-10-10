@@ -445,4 +445,13 @@ require("lazy").setup({
 	"rhysd/vim-llvm",
 	-- "LudoPinelli/comment-box.nvim",
 	"Airbus5717/c3.vim",
+	{
+		'mireq/luasnip-snippets',
+		dependencies = {'L3MON4D3/LuaSnip'},
+		init = function()
+			-- Mandatory setup function
+			require('luasnip_snippets.common.snip_utils').setup()
+		end
+
+	},
 })
