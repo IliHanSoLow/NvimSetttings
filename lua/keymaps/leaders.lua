@@ -27,6 +27,7 @@ wk.add({
 	{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File" },
 	{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Find in Help" },
 	{ "<leader>fm", "<cmd>Telescope man_pages<cr>", desc = "Find in ManPages" },
+	{ "<leader>ft", "<cmd>Telescope filetypes<cr>", desc = "Find File" },
 	{ "<leader>fn", "<cmd>enew<cr>", desc = "New File" },
 	{ "<leader>fc", ":e<space>", desc = "Open new file with name" },
 	{

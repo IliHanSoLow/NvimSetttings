@@ -89,9 +89,9 @@ vim.g.disable_autoformat = true
 -- vim.cmd("set cmdheight=0")
 
 -- Set default shell
-local handle = io.popen("which fish 2>/dev/null")
+--[[ local handle = io.popen("which fish 2>/dev/null")
 local result = handle:read("*a")
 handle:close()
 if result ~= "" then
 	vim.o.shell = "fish"
-end
+end ]]

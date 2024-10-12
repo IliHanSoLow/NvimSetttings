@@ -387,6 +387,7 @@ require("lazy").setup({
 		end,
 	},
 	"hrsh7th/cmp-path",
+	"hrsh7th/cmp-buffer",
 	{
 		"epwalsh/pomo.nvim",
 		version = "*", -- Recommended, use latest release instead of latest commit
