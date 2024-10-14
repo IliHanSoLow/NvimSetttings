@@ -24,12 +24,12 @@ require("lazy").setup({
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown({}),
 					},
-					file_browser = {
+					--[[ file_browser = {
 						-- theme = "ivy",
 						-- disables netrw and use telescope-file-browser in its place
 						hijack_netrw = true,
 						no_ignore = true,
-					},
+					}, ]]
 
 					-- Config for projects
 					project = {
@@ -42,7 +42,7 @@ require("lazy").setup({
 			})
 			require("telescope").load_extension("ui-select")
 			require("telescope").load_extension("fzf")
-			require("telescope").load_extension("file_browser")
+			-- require("telescope").load_extension("file_browser")
 			require("telescope").load_extension("project")
 		end,
 	},
@@ -399,11 +399,11 @@ require("lazy").setup({
 		opts = {},
 	},
 	"habamax/vim-godot",
-	{
+	--[[ {
 		"nvim-telescope/telescope-file-browser.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
 		lazy = true,
-	},
+	}, ]]
 	"tpope/vim-sleuth",
 	{
 		"j-hui/fidget.nvim",
@@ -490,5 +490,20 @@ require("lazy").setup({
 		lazy = true,
 		cmd = {"GdbStart", "GdbStartLLDB"}
 	} ]]
-	require("plugins.dab")
+	require("plugins.dab"),
+	{
+		"X3eRo0/dired.nvim",
+		dependencies = "MunifTanjim/nui.nvim",
+		opts = {
+			path_separator = "/",
+			show_banner = false,
+			show_icons = false,
+			show_hidden = true,
+			show_dot_dirs = true,
+			show_colors = true,
+		},
+		lazy = true,
+		cmd = "Dired"
+	}
+
 })
