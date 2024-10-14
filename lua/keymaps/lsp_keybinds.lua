@@ -3,6 +3,7 @@ local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
 local nlspsettings = require("nlspsettings")
+-- Lsp_on = false
 
 lsp_zero.on_attach(function(client, bufnr)
 	-- see :help lsp-zero-keybindings
@@ -14,6 +15,9 @@ lsp_zero.on_attach(function(client, bufnr)
 	vim.keymap.set("n", "gh", "<cmd>lua vim.lsp.buf.code_action()<CR>", { buffer = bufnr })
 	vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { buffer = bufnr })
 	client.server_capabilities.semanticTokensProvider = nil
+	--[[ if not Lsp_on then
+		vim.cmd("LspStop")
+	end ]]
 end)
 
 lspconfig.ocamllsp.setup({})
@@ -57,9 +61,9 @@ local select_opts = { behavior = cmp.SelectBehavior.Select }
 cmp.setup({
 	sources = {
 		{ name = "path" },
-		{ name = "nvim_lsp", keyword_length = 4 },
-		{ name = "buffer", keyword_length = 4 },
-		{ name = "luasnip", keyword_length = 3 },
+		{ name = "nvim_lsp", keyword_length = 3 },
+		{ name = "buffer", keyword_length = 2 },
+		{ name = "luasnip", keyword_length = 2 },
 	},
 	window = {
 		documentation = cmp.config.window.bordered(),
@@ -160,3 +164,12 @@ vim.api.nvim_create_user_command("ToggleDiagnostic", function()
 		signs = not vt,
 	})
 end, { desc = "toggle diagnostic" })
+-- vim.api.nvim_create_user_command("ToggleLSP", function()
+-- 	if Lsp_on then
+-- 		Lsp_on = false
+-- 		vim.cmd("LspStop")
+-- 	else
+-- 		Lsp_on = true
+-- 		vim.cmd("LspStart")
+-- 	end
+-- end, { desc = "toggle diagnostic" })

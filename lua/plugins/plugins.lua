@@ -56,9 +56,7 @@ require("lazy").setup({
 	{
 		"lewis6991/gitsigns.nvim",
 		event = "User FileOpened",
-		config = function ()
-			require('gitsigns').setup()
-		end,
+		opts = {}
 		-- cmd = "Gitsigns",
 		-- lazy = true,
 	},
@@ -487,9 +485,10 @@ require("lazy").setup({
 		end
 
 	},
-	{
+	--[[ {
 		"sakhnik/nvim-gdb",
 		lazy = true,
 		cmd = {"GdbStart", "GdbStartLLDB"}
-	}
+	} ]]
+	require("plugins.dab")
 })

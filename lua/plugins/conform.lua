@@ -34,7 +34,7 @@ local function show_notification(message, level)
 	notify(message, level, { title = "conform.nvim" })
 end
 
-vim.api.nvim_create_user_command("FormatToggle", function(args)
+vim.api.nvim_create_user_command("ToggleFormat", function(args)
 	local is_global = not args.bang
 	if is_global then
 		vim.g.disable_autoformat = not vim.g.disable_autoformat
