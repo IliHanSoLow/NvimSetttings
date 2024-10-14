@@ -57,9 +57,9 @@ local select_opts = { behavior = cmp.SelectBehavior.Select }
 cmp.setup({
 	sources = {
 		{ name = "path" },
-		{ name = "nvim_lsp", keyword_length = 1 },
-		{ name = "buffer", keyword_length = 3 },
-		{ name = "luasnip", keyword_length = 2 },
+		{ name = "nvim_lsp", keyword_length = 4 },
+		{ name = "buffer", keyword_length = 4 },
+		{ name = "luasnip", keyword_length = 3 },
 	},
 	window = {
 		documentation = cmp.config.window.bordered(),
@@ -151,7 +151,7 @@ mason_lspconfig.setup_handlers({
 	end,
 })
 
-vim.api.nvim_create_user_command("DiagnosticToggle", function()
+vim.api.nvim_create_user_command("ToggleDiagnostic", function()
 	local config = vim.diagnostic.config
 	local vt = config().virtual_text
 	config({

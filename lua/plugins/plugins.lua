@@ -385,6 +385,7 @@ require("lazy").setup({
 			-- Prefix image names with timestamp.
 			return string.format("%s-", os.time())
 		end,
+		cmd = { "Obsidian", "ObsidianToday", "ObsidianQuickSwitch" },
 	},
 	"hrsh7th/cmp-path",
 	"hrsh7th/cmp-buffer",
@@ -486,4 +487,9 @@ require("lazy").setup({
 		end
 
 	},
+	{
+		"sakhnik/nvim-gdb",
+		lazy = true,
+		cmd = {"GdbStart", "GdbStartLLDB"}
+	}
 })
