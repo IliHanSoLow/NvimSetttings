@@ -99,7 +99,7 @@ wk.add({
 		end,
 		desc = "Obsidian",
 	},
-	{ "<leader>op", "<cmd>Dired<cr>", desc = "Telescope Files" },
+	{ "<leader>op", "<cmd>Oil<cr>", desc = "Telescope Files" },
 	{ "<leader>os", "<cmd>edit /bigssd/Dokumente/ObsidianVault/notes/Scratch.md<cr>", desc = "open scratch" },
 	{ "<leader>qq", "<cmd>q<cr>", desc = "Quit" },
 	{ "<leader>r", group = "reload" },

@@ -492,18 +492,13 @@ require("lazy").setup({
 	} ]]
 	require("plugins.dab"),
 	{
-		"X3eRo0/dired.nvim",
-		dependencies = "MunifTanjim/nui.nvim",
-		opts = {
-			path_separator = "/",
-			show_banner = false,
-			show_icons = false,
-			show_hidden = true,
-			show_dot_dirs = true,
-			show_colors = true,
-		},
-		lazy = true,
-		cmd = "Dired"
+		'stevearc/oil.nvim',
+		---@module 'oil'
+		---@type oil.SetupOpts
+		opts = {},
+		-- Optional dependencies
+		dependencies = { { "echasnovski/mini.icons", opts = {} } },
+		-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
 	}
 
 })
