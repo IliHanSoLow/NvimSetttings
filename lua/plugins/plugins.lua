@@ -55,10 +55,10 @@ require("lazy").setup({
 	},
 	{
 		"lewis6991/gitsigns.nvim",
-		event = "User FileOpened",
-		opts = {}
-		-- cmd = "Gitsigns",
-		-- lazy = true,
+		-- event = "User FileOpened",
+		opts = {},
+		cmd = "Gitsigns",
+		lazy = true,
 	},
 	{
 		"numToStr/Comment.nvim",
@@ -211,7 +211,8 @@ require("lazy").setup({
 	"nvim-treesitter/playground",
 	{"ThePrimeagen/harpoon", lazy = true},
 	"mbbill/undotree",
-	{
+	"sindrets/diffview.nvim",
+	--[[ {
 		"NeogitOrg/neogit",
 		cmd = "Neogit",
 		dependencies = {
@@ -223,7 +224,7 @@ require("lazy").setup({
 		},
 		config = true,
 		lazy = true,
-	},
+	}, ]]
 	"easymotion/vim-easymotion",
 	{"ThePrimeagen/vim-be-good", cmd = "VimBeGood", lazy = true},
 	{

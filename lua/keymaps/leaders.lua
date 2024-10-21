@@ -46,7 +46,7 @@ wk.add({
 	{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File" },
 	{ "<leader>fs", "<cmd>w<cr>", desc = "Save" },
 	{ "<leader>g", group = "git" },
-	{ "<leader>gg", "<cmd>Neogit<cr>", desc = "openNeogit" },
+	-- { "<leader>gg", "<cmd>Neogit<cr>", desc = "openNeogit" },
 	{ "<leader>h", group = "harpoon" },
 	{
 		"<leader>ha",
