@@ -472,6 +472,7 @@ require("lazy").setup({
 				down = '<C-j>',
 				up = '<C-k>',
 			}})
+			require("mini.pairs").setup({})
 		end,
 	},
 	"rhysd/vim-llvm",

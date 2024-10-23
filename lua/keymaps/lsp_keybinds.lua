@@ -42,6 +42,7 @@ lspconfig.rust_analyzer.setup({
 lspconfig.nim_langserver.setup({})
 lspconfig.gopls.setup({})
 lspconfig.jdtls.setup({})
+lspconfig.nixd.setup({})
 
 mason.setup({})
 mason_lspconfig.setup({
