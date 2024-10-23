@@ -95,3 +95,23 @@ handle:close()
 if result ~= "" then
 	vim.o.shell = "fish"
 end ]]
+
+-- folding
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldcolumn = "0"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 1
+vim.opt.foldtext = ""
+vim.opt.foldnestmax = 4
+
+-- set yaml indenting
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "yaml",
+  callback = function()
+    vim.bo.tabstop = 2
+    vim.bo.softtabstop = 2
+    vim.bo.shiftwidth = 2
+    vim.bo.expandtab = true
+  end,
+})
