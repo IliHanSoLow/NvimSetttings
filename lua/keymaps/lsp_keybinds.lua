@@ -42,7 +42,25 @@ lspconfig.rust_analyzer.setup({
 lspconfig.nim_langserver.setup({})
 lspconfig.gopls.setup({})
 lspconfig.jdtls.setup({})
-lspconfig.nixd.setup({})
+lspconfig.nixd.setup({
+	cmd = {"nixd"},
+	settings = {
+		nixd = {
+			nixpkgs = {
+				-- expr = "import <nixpkgs> { }",
+				expr = "import (builtins.getFlake \"/home/ilian/dotfiles/nixos/nixos/flake.nix\").inputs.nixpkgs { }",
+			}
+		},
+		formatting = {
+			command = {"alejandra"}
+		},
+		options = {
+			nixos = {
+				expr = "(builtins.getFlake \"/home/ilian/dotfiles/nixos/nixos/flake.nix\").nixosConfigurations.hyprland.options"
+			},
+		}
+	}
+})
 
 mason.setup({})
 mason_lspconfig.setup({
