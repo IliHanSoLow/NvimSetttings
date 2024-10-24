@@ -104,3 +104,26 @@ vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 1
 vim.opt.foldtext = ""
 vim.opt.foldnestmax = 4
+
+-- better folding for nix files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "nix",
+  callback = function()
+    vim.opt_local.foldlevel = 3
+  end
+})
+
+-- better behaviour for yaml files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "yaml",
+  callback = function()
+    vim.opt_local.foldlevel = 99
+		-- Basic Settings
+		vim.opt_local.cursorcolumn = true
+		vim.opt_local.shiftwidth = 2
+		vim.opt_local.softtabstop = 2
+		vim.opt_local.tabstop = 2
+		vim.opt_local.expandtab = true
+  end
+})
+

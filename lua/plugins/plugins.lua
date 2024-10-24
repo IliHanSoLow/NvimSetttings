@@ -101,11 +101,7 @@ require("lazy").setup({
 	{
 		"RRethy/vim-illuminate",
 		opts = {
-			delay = 200,
 			large_file_cutoff = 2000,
-			large_file_overrides = {
-				providers = { "lsp" },
-			},
 		},
 		config = function(_, opts)
 			require("illuminate").configure(opts)
@@ -405,7 +401,7 @@ require("lazy").setup({
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
 		lazy = true,
 	}, ]]
-	"tpope/vim-sleuth",
+	-- "tpope/vim-sleuth",
 	{
 		"j-hui/fidget.nvim",
 		opts = {
