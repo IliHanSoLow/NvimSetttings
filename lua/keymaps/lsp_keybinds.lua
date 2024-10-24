@@ -13,7 +13,7 @@ lsp_zero.on_attach(function(client, bufnr)
 		preserve_mappings = false,
 	})
 	vim.keymap.set("n", "gh", "<cmd>lua vim.lsp.buf.code_action()<CR>", { buffer = bufnr })
-	vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { buffer = bufnr })
+	-- vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { buffer = bufnr })
 	client.server_capabilities.semanticTokensProvider = nil
 	--[[ if not Lsp_on then
 		vim.cmd("LspStop")
@@ -23,6 +23,7 @@ end)
 lspconfig.ocamllsp.setup({})
 lspconfig.clangd.setup({})
 lspconfig.rust_analyzer.setup({
+	cmd = { "rust-analyzer" }
 	--[[ settings = {
 		["rust-analyzer"] = {
 			checkOnSave = {
@@ -65,9 +66,17 @@ lspconfig.nixd.setup({
 mason.setup({})
 mason_lspconfig.setup({
 	ensure_installed = {},
+	automatic_installation = false,
 	handlers = {
 		lsp_zero.default_setup,
 	},
+})
+mason_lspconfig.setup_handlers({
+	function(server_name)
+		lspconfig[server_name].setup({
+			on_attach = on_attach,
+		})
+	end,
 })
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
@@ -162,16 +171,6 @@ global_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
 	capabilities = global_capabilities,
-})
-
-mason.setup()
-mason_lspconfig.setup()
-mason_lspconfig.setup_handlers({
-	function(server_name)
-		lspconfig[server_name].setup({
-			on_attach = on_attach,
-		})
-	end,
 })
 
 vim.api.nvim_create_user_command("ToggleDiagnostic", function()
