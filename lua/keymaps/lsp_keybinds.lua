@@ -1,6 +1,4 @@
 local lsp_zero = require("lsp-zero")
-local mason = require("mason")
-local mason_lspconfig = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
 local nlspsettings = require("nlspsettings")
 -- Lsp_on = false
@@ -23,7 +21,7 @@ end)
 lspconfig.ocamllsp.setup({})
 lspconfig.clangd.setup({})
 lspconfig.rust_analyzer.setup({
-	cmd = { "rust-analyzer" }
+	cmd = { "rust-analyzer" },
 	--[[ settings = {
 		["rust-analyzer"] = {
 			checkOnSave = {
@@ -43,41 +41,7 @@ lspconfig.rust_analyzer.setup({
 lspconfig.nim_langserver.setup({})
 lspconfig.gopls.setup({})
 lspconfig.jdtls.setup({})
-lspconfig.nixd.setup({
-	cmd = {"nixd"},
-	settings = {
-		nixd = {
-			nixpkgs = {
-				-- expr = "import <nixpkgs> { }",
-				expr = "import (builtins.getFlake \"/home/ilian/dotfiles/nixos/nixos/flake.nix\").inputs.nixpkgs { }",
-			}
-		},
-		formatting = {
-			command = {"alejandra"}
-		},
-		options = {
-			nixos = {
-				expr = "(builtins.getFlake \"/home/ilian/dotfiles/nixos/nixos/flake.nix\").nixosConfigurations.hyprland.options"
-			},
-		}
-	}
-})
-
-mason.setup({})
-mason_lspconfig.setup({
-	ensure_installed = {},
-	automatic_installation = false,
-	handlers = {
-		lsp_zero.default_setup,
-	},
-})
-mason_lspconfig.setup_handlers({
-	function(server_name)
-		lspconfig[server_name].setup({
-			on_attach = on_attach,
-		})
-	end,
-})
+lspconfig.nixd.setup({})
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
@@ -136,19 +100,6 @@ lsp_zero.set_sign_icons({
 	warn = "▲",
 	hint = "⚑",
 	info = "»",
-})
-
-require("mason-lspconfig").setup({
-	handlers = {
-		lsp_zero.default_setup,
-		-- tsserver = function()
-		-- 	require("lspconfig").rust_analyzer.setup({
-		-- 		check = {
-		-- 			command = "clippy",
-		-- 		},
-		-- 	})
-		-- end,
-	},
 })
 
 nlspsettings.setup({
