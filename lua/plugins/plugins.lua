@@ -229,10 +229,9 @@ require("lazy").setup({
 	},
 	--- Uncomment the two plugins below if you want to manage the language servers from neovim
 
-	{ "VonHeikemen/lsp-zero.nvim", branch = "v4.x" },
 	{ "neovim/nvim-lspconfig" },
 	{ "hrsh7th/cmp-nvim-lsp" },
-	{ -- optional completion source for require statements and module annotations
+	{
 		"hrsh7th/nvim-cmp",
 		opts = function(_, opts)
 			opts.sources = opts.sources or {}

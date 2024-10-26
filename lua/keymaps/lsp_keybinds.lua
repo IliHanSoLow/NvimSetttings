@@ -1,22 +1,28 @@
-local lsp_zero = require("lsp-zero")
+-- local lsp_zero = require("lsp-zero")
 local lspconfig = require("lspconfig")
 local nlspsettings = require("nlspsettings")
--- Lsp_on = false
 
-lsp_zero.on_attach(function(client, bufnr)
-	-- see :help lsp-zero-keybindings
-	-- to learn the available actions
-	lsp_zero.default_keymaps({
-		buffer = bufnr,
-		preserve_mappings = false,
-	})
-	vim.keymap.set("n", "gh", "<cmd>lua vim.lsp.buf.code_action()<CR>", { buffer = bufnr })
-	-- vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { buffer = bufnr })
-	client.server_capabilities.semanticTokensProvider = nil
-	--[[ if not Lsp_on then
-		vim.cmd("LspStop")
-	end ]]
-end)
+local lspconfig_defaults = require("lspconfig").util.default_config
+lspconfig_defaults.capabilities =
+	vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	desc = "LSP actions",
+	callback = function(event)
+		local opts = { buffer = event.buf }
+
+		vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+		vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+		vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
+		vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+		vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
+		vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+		vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+		vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+		vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
+		vim.keymap.set("n", "gh", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+	end,
+})
 
 lspconfig.ocamllsp.setup({})
 lspconfig.clangd.setup({})
@@ -41,13 +47,13 @@ lspconfig.rust_analyzer.setup({
 lspconfig.nim_langserver.setup({})
 lspconfig.gopls.setup({})
 lspconfig.jdtls.setup({})
-lspconfig.nixd.setup({})
+lspconfig.nil_ls.setup({})
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 local luasnip = require("luasnip")
 local cmp = require("cmp")
-local cmp_action = require("lsp-zero").cmp_action()
+-- local cmp_action = require("lsp-zero").cmp_action()
 local select_opts = { behavior = cmp.SelectBehavior.Select }
 
 cmp.setup({
@@ -79,27 +85,44 @@ cmp.setup({
 
 		-- Ctrl+Space to trigger completion menu
 		["<C-Space>"] = cmp.mapping.complete(),
+		["<C-e>"] = cmp.mapping.abort(),
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
 
 		-- Scroll up and down in the completion documentation
 		["<C-u>"] = cmp.mapping.scroll_docs(-4),
 		["<C-d>"] = cmp.mapping.scroll_docs(4),
-
-		-- Navigate between snippet placeholder
-		["<Tab>"] = cmp_action.luasnip_supertab(),
-		["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
 	}),
 	snippet = {
 		expand = function(args)
-			require("luasnip").lsp_expand(args.body)
+			luasnip.lsp_expand(args.body)
 		end,
 	},
 })
+vim.keymap.set({ "i" }, "<C-K>", function()
+	luasnip.expand()
+end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-L>", function()
+	luasnip.jump(1)
+end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-J>", function()
+	luasnip.jump(-1)
+end, { silent = true })
 
-lsp_zero.set_sign_icons({
-	error = "✘",
-	warn = "▲",
-	hint = "⚑",
-	info = "»",
+vim.keymap.set({ "i", "s" }, "<C-E>", function()
+	if luasnip.choice_active() then
+		luasnip.change_choice(1)
+	end
+end, { silent = true })
+
+vim.diagnostic.config({
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "✘",
+			[vim.diagnostic.severity.WARN] = "▲",
+			[vim.diagnostic.severity.HINT] = "⚑",
+			[vim.diagnostic.severity.INFO] = "»",
+		},
+	},
 })
 
 nlspsettings.setup({
