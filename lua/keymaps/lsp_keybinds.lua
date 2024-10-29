@@ -12,6 +12,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local opts = { buffer = event.buf }
 
 		vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+		vim.keymap.set("n", "gk", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
 		vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
 		vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
 		vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
@@ -47,7 +48,9 @@ lspconfig.rust_analyzer.setup({
 lspconfig.nim_langserver.setup({})
 lspconfig.gopls.setup({})
 lspconfig.jdtls.setup({})
+lspconfig.lua_ls.setup({})
 lspconfig.nil_ls.setup({})
+lspconfig.ts_ls.setup({})
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
@@ -165,3 +168,25 @@ end, { desc = "toggle diagnostic" })
 -- 		vim.cmd("LspStart")
 -- 	end
 -- end, { desc = "toggle diagnostic" })
+
+
+
+--[[ lspconfig.nixd.setup({
+	settings = {
+		nixpkgs = {
+			expr = "import (builtins.getFlake \"/home/ilian/dotfiles/nixos\").inputs.nixpkgs { }"
+		},
+		formatting = {
+			command = {"alejandra"}
+		},
+		options = {
+			nixos = {
+				expr = "import (builtins.getFlake \"/home/ilian/dotfiles/nixos\").nixosConfigurations.hyprland.options"
+			},
+			-- home_manager = {
+			-- 	expr = "import (builtins.getFlake \"/home/ilian/dotfiles/nixos\").homeConfigurations.\"ilian@legionOfNix\".options"
+			-- }
+
+		},
+	}
+}) ]]

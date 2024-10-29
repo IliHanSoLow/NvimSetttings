@@ -289,11 +289,11 @@ require("lazy").setup({
 		ft = "typst",
 		lazy = true,
 	},
-	--[[ {
+	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		opts = {}, -- this is equalent to setup({}) function
-	}, ]]
+	},
 	{
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
@@ -465,7 +465,7 @@ require("lazy").setup({
 				down = '<C-j>',
 				up = '<C-k>',
 			}})
-			require("mini.pairs").setup({})
+			-- require("mini.pairs").setup({})
 		end,
 	},
 	"rhysd/vim-llvm",
@@ -498,5 +498,5 @@ require("lazy").setup({
 	{
 		"p00f/godbolt.nvim",
 		opts = {}
-	}
+	},
 })

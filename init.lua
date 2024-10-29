@@ -20,14 +20,14 @@ else
 		vim.o.background = "light"
 	else
 		-- vim.cmd.colorscheme("catppuccin-macchiato")
-		vim.cmd.colorscheme("gruber-darker")
+		vim.cmd("colorscheme kanagawa")
 		vim.o.background = "dark"
 	end
 	-- vim.cmd.colorscheme("cyberdream-light")
-	-- vim.cmd("colorscheme kanagawa")
 	-- vim.cmd("colorscheme nightfox")
 	-- vim.cmd("colorscheme iceberg")
 	-- vim.cmd("colorscheme carbonfox")
+	-- vim.cmd.colorscheme("gruber-darker")
 	-- has to be at the end
 
 	require("keymaps")
