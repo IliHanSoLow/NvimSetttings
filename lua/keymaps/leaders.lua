@@ -102,6 +102,9 @@ wk.add({
 	{ "<leader>op", "<cmd>Oil<cr>", desc = "Telescope Files" },
 	{ "<leader>os", "<cmd>edit /bigssd/Dokumente/ObsidianVault/notes/Scratch.md<cr>", desc = "open scratch" },
 	{ "<leader>qq", "<cmd>q<cr>", desc = "Quit" },
+	{ "<leader>qo", "<cmd>cw<cr>", desc = "QuckfixOpen" },
+	{ "<leader>ql", "<cmd>lua vim.diagnostic.setqflist()<cr>", desc = "Quckfixlsp" },
+	{ "<leader>qc", "<cmd>cclose<cr>", desc = "QuickfixClose" },
 	{ "<leader>r", group = "reload" },
 	{ "<leader>rr", "<cmd>e!<cr>", desc = "current buffer" },
 	{

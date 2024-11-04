@@ -16,7 +16,8 @@ else
 	require("plugins")
 
 	if os.getenv("COLOR_THEME") == "light" then
-		vim.cmd("colorscheme cyberdream")
+		-- vim.cmd("colorscheme cyberdream")
+		vim.cmd("colorscheme kanagawa-lotus")
 		vim.o.background = "light"
 	else
 		-- vim.cmd.colorscheme("catppuccin-macchiato")

@@ -84,20 +84,6 @@ require("lazy").setup({
 		event = "VimEnter",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
-
-	-- Terminal
-	--[[ {
-		"akinsho/toggleterm.nvim",
-		branch = "main",
-		cmd = {
-			"ToggleTerm",
-			"TermExec",
-			"ToggleTermToggleAll",
-			"ToggleTermSendCurrentLine",
-			"ToggleTermSendVisualLines",
-			"ToggleTermSendVisualSelection",
-		},
-	}, ]]
 	{
 		"RRethy/vim-illuminate",
 		opts = {
@@ -246,44 +232,6 @@ require("lazy").setup({
 		dependencies = { "rafamadriz/friendly-snippets" },
 	},
 	"saadparwaiz1/cmp_luasnip",
-	{
-		"folke/trouble.nvim",
-		opts = {}, -- for default options, refer to the configuration section for custom setup.
-		cmd = "Trouble",
-		keys = {
-			{
-				"<leader>tt",
-				"<cmd>Trouble diagnostics toggle<cr>",
-				desc = "Diagnostics (Trouble)",
-			},
-			{
-				"<leader>tT",
-				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-				desc = "Buffer Diagnostics (Trouble)",
-			},
-			{
-				"<leader>ts",
-				"<cmd>Trouble symbols toggle focus=false<cr>",
-				desc = "Symbols (Trouble)",
-			},
-			{
-				"<leader>tl",
-				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-				desc = "LSP Definitions / references / ... (Trouble)",
-			},
-			{
-				"<leader>tL",
-				"<cmd>Trouble loclist toggle<cr>",
-				desc = "Location List (Trouble)",
-			},
-			{
-				"<leader>tQ",
-				"<cmd>Trouble qflist toggle<cr>",
-				desc = "Quickfix List (Trouble)",
-			},
-		},
-		lazy = true,
-	},
 	{
 		"kaarmu/typst.vim",
 		ft = "typst",
@@ -499,4 +447,40 @@ require("lazy").setup({
 		"p00f/godbolt.nvim",
 		opts = {}
 	},
+	{
+		'derektata/lorem.nvim',
+		config = function()
+			require('lorem').opts {
+				sentenceLength = "medium",
+				comma_chance = 0.2,
+				max_commas_per_sentence = 2,
+			}
+		end
+	},
+	{
+		'sQVe/sort.nvim',
+		opts = {}
+	},
+	{
+		"onsails/diaglist.nvim",
+		config = function()
+			require("diaglist").init({
+				debug = false,
+				debounce_ms = 150,
+
+			})
+		end,
+		keys = {
+			{
+				"<leader>tt",
+				"<cmd>lua require('diaglist').open_all_diagnostics()<cr>",
+				desc = "Diagnostics",
+			},
+			{
+				"<leader>tl",
+				"<cmd>lua require('diaglist').open_all_diagnostics()<cr>",
+				desc = "Diagnostics in Buf",
+			},
+		}
+	}
 })
