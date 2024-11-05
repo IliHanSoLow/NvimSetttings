@@ -127,3 +127,13 @@ vim.api.nvim_create_autocmd("FileType", {
   end
 })
 
+_G.toggle_spaces = function()
+
+	if vim.opt.list then
+		vim.opt.list = false
+	else
+		vim.opt.list = true
+		vim.opt.listchars = { tab = "> ", trail = "-", eol = "$" }
+	end
+end
+vim.api.nvim_create_user_command("ToggleSpaces", _G.toggle_spaces, {})

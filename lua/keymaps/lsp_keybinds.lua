@@ -169,24 +169,24 @@ end, { desc = "toggle diagnostic" })
 -- 	end
 -- end, { desc = "toggle diagnostic" })
 
-
-
 --[[ lspconfig.nixd.setup({
-	settings = {
-		nixpkgs = {
+   cmd = { "nixd" },
+   settings = {
+      nixd = {
+         nixpkgs = {
 			expr = "import (builtins.getFlake \"/home/ilian/dotfiles/nixos\").inputs.nixpkgs { }"
-		},
-		formatting = {
+         },
+         formatting = {
 			command = {"alejandra"}
-		},
-		options = {
+         },
+         options = {
 			nixos = {
-				expr = "import (builtins.getFlake \"/home/ilian/dotfiles/nixos\").nixosConfigurations.hyprland.options"
+				expr = "import (builtins.getFlake \"/home/ilian/dotfiles/nixos\").nixosConfigurations.legionOfNix.options"
 			},
-			-- home_manager = {
-			-- 	expr = "import (builtins.getFlake \"/home/ilian/dotfiles/nixos\").homeConfigurations.\"ilian@legionOfNix\".options"
-			-- }
-
-		},
-	}
+			home_manager = {
+				expr = "import (builtins.getFlake \"/home/ilian/dotfiles/nixos\").homeConfigurations.\"ilian@legionOfNix\".options"
+			}
+         },
+      },
+   },
 }) ]]

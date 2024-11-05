@@ -482,5 +482,6 @@ require("lazy").setup({
 				desc = "Diagnostics in Buf",
 			},
 		}
-	}
+	},
+	"kovetskiy/sxhkd-vim"
 })
