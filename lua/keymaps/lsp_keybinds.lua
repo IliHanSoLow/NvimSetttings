@@ -49,8 +49,29 @@ lspconfig.nim_langserver.setup({})
 lspconfig.gopls.setup({})
 lspconfig.jdtls.setup({})
 lspconfig.lua_ls.setup({})
-lspconfig.nil_ls.setup({})
-lspconfig.ts_ls.setup({})
+lspconfig.nil_ls.setup({
+	settings = {
+		['nil'] = {
+			formatting = {
+				command = {"alejandra"}
+			}
+		}
+	}
+})
+lspconfig.denols.setup({
+	on_attach = on_attach,
+	root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+})
+
+lspconfig.ts_ls.setup({
+	on_attach = on_attach,
+	root_dir = lspconfig.util.root_pattern("package.json"),
+	single_file_support = false,
+})
+vim.g.markdown_fenced_languages = {
+	"ts=typescript",
+}
+lspconfig.pylsp.setup({})
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 

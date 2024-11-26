@@ -97,13 +97,13 @@ if result ~= "" then
 end ]]
 
 -- folding
-vim.opt.foldmethod = "expr"
+--[[ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldcolumn = "0"
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 1
 vim.opt.foldtext = ""
-vim.opt.foldnestmax = 4
+vim.opt.foldnestmax = 4 
 
 -- better folding for nix files
 vim.api.nvim_create_autocmd("FileType", {
@@ -125,15 +125,18 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.tabstop = 2
 		vim.opt_local.expandtab = true
   end
-})
+})]]
+
+spaces_on = false
+vim.opt.listchars = { tab = "> ", trail = "-", eol = "$" }
 
 _G.toggle_spaces = function()
-
-	if vim.opt.list then
+	if spaces_on then
+		spaces_on = false
 		vim.opt.list = false
 	else
 		vim.opt.list = true
-		vim.opt.listchars = { tab = "> ", trail = "-", eol = "$" }
+		spaces_on = true
 	end
 end
 vim.api.nvim_create_user_command("ToggleSpaces", _G.toggle_spaces, {})

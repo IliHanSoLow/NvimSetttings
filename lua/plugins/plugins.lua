@@ -11,7 +11,7 @@ require("lazy").setup({
 			},
 		},
 	},
-	{ "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
+	{ "Bilal2453/luvit-meta",                    lazy = true }, -- optional `vim.uv` typings
 
 	{
 		"nvim-telescope/telescope.nvim",
@@ -35,10 +35,9 @@ require("lazy").setup({
 					project = {
 						base_dirs = {
 							"/bigssd/Dokumente/git/",
-						}
-					}
+						},
+					},
 				},
-
 			})
 			require("telescope").load_extension("ui-select")
 			require("telescope").load_extension("fzf")
@@ -47,7 +46,7 @@ require("lazy").setup({
 		end,
 	},
 	{ "nvim-telescope/telescope-ui-select.nvim", lazy = true },
-	{ "nvim-telescope/telescope-project.nvim", lazy = true },
+	{ "nvim-telescope/telescope-project.nvim",   lazy = true },
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
 		build = "make",
@@ -191,7 +190,7 @@ require("lazy").setup({
 	"EdenEast/nightfox.nvim",
 	"oahlen/iceberg.nvim",
 	"nvim-treesitter/playground",
-	{"ThePrimeagen/harpoon", lazy = true},
+	{ "ThePrimeagen/harpoon",     lazy = true },
 	"mbbill/undotree",
 	"sindrets/diffview.nvim",
 	--[[ {
@@ -208,7 +207,7 @@ require("lazy").setup({
 		lazy = true,
 	}, ]]
 	"easymotion/vim-easymotion",
-	{"ThePrimeagen/vim-be-good", cmd = "VimBeGood", lazy = true},
+	{ "ThePrimeagen/vim-be-good", cmd = "VimBeGood", lazy = true },
 	{
 		"stevearc/conform.nvim",
 		opts = {},
@@ -353,7 +352,7 @@ require("lazy").setup({
 			-- options
 		},
 	},
-	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+	{ "catppuccin/nvim",             name = "catppuccin", priority = 1000 },
 	{
 		"nvim-neotest/neotest",
 		dependencies = {
@@ -363,7 +362,7 @@ require("lazy").setup({
 		},
 	},
 	{ "tamago324/nlsp-settings.nvim" },
-	{ "uga-rosa/ccc.nvim", lazy = true },
+	{ "uga-rosa/ccc.nvim",           lazy = true },
 	{
 		"scottmckendry/cyberdream.nvim",
 		lazy = false,
@@ -389,30 +388,33 @@ require("lazy").setup({
 	-- "andweeb/presence.nvim",
 	"blazkowolf/gruber-darker.nvim",
 	{
-		'echasnovski/mini.nvim', version = false,
+		"echasnovski/mini.nvim",
+		version = false,
 		config = function()
 			require("mini.basics").setup({})
 			require("mini.ai").setup({})
 			require("mini.jump").setup({})
 			require("mini.surround").setup({
 				mappings = {
-					add = '<leader>sa',
-					delete = '<leader>sd',
-					find = '<leader>sf',
-					find_left = '<leader>sF',
-					highlight = '<leader>sh',
-					replace = '<leader>sr',
-					update_n_lines = '<leader>sn',
-					suffix_last = 'l',
-					suffix_next = 'n',
-				}
+					add = "<leader>sa",
+					delete = "<leader>sd",
+					find = "<leader>sf",
+					find_left = "<leader>sF",
+					highlight = "<leader>sh",
+					replace = "<leader>sr",
+					update_n_lines = "<leader>sn",
+					suffix_last = "l",
+					suffix_next = "n",
+				},
 			})
-			require("mini.move").setup({mappings = {
-				left = '<C-h>',
-				right = '<C-l>',
-				down = '<C-j>',
-				up = '<C-k>',
-			}})
+			require("mini.move").setup({
+				mappings = {
+					left = "<C-h>",
+					right = "<C-l>",
+					down = "<C-j>",
+					up = "<C-k>",
+				},
+			})
 			-- require("mini.pairs").setup({})
 		end,
 	},
@@ -420,13 +422,12 @@ require("lazy").setup({
 	-- "LudoPinelli/comment-box.nvim",
 	"Airbus5717/c3.vim",
 	{
-		'mireq/luasnip-snippets',
-		dependencies = {'L3MON4D3/LuaSnip'},
+		"mireq/luasnip-snippets",
+		dependencies = { "L3MON4D3/LuaSnip" },
 		init = function()
 			-- Mandatory setup function
-			require('luasnip_snippets.common.snip_utils').setup()
-		end
-
+			require("luasnip_snippets.common.snip_utils").setup()
+		end,
 	},
 	--[[ {
 		"sakhnik/nvim-gdb",
@@ -435,7 +436,7 @@ require("lazy").setup({
 	} ]]
 	require("plugins.dab"),
 	{
-		'stevearc/oil.nvim',
+		"stevearc/oil.nvim",
 		---@module 'oil'
 		---@type oil.SetupOpts
 		opts = {},
@@ -445,21 +446,21 @@ require("lazy").setup({
 	},
 	{
 		"p00f/godbolt.nvim",
-		opts = {}
+		opts = {},
 	},
 	{
-		'derektata/lorem.nvim',
+		"derektata/lorem.nvim",
 		config = function()
-			require('lorem').opts {
+			require("lorem").opts({
 				sentenceLength = "medium",
 				comma_chance = 0.2,
 				max_commas_per_sentence = 2,
-			}
-		end
+			})
+		end,
 	},
 	{
-		'sQVe/sort.nvim',
-		opts = {}
+		"sQVe/sort.nvim",
+		opts = {},
 	},
 	{
 		"onsails/diaglist.nvim",
@@ -467,7 +468,6 @@ require("lazy").setup({
 			require("diaglist").init({
 				debug = false,
 				debounce_ms = 150,
-
 			})
 		end,
 		keys = {
@@ -481,7 +481,22 @@ require("lazy").setup({
 				"<cmd>lua require('diaglist').open_all_diagnostics()<cr>",
 				desc = "Diagnostics in Buf",
 			},
-		}
+		},
 	},
-	"kovetskiy/sxhkd-vim"
+	"kovetskiy/sxhkd-vim",
+	{
+		"https://codeberg.org/esensar/nvim-dev-container",
+		dependencies = "nvim-treesitter/nvim-treesitter",
+		opts = {},
+	},
+	{
+		"OXY2DEV/markview.nvim",
+		lazy = false, -- Recommended
+		-- ft = "markdown" -- If you decide to lazy-load anyway
+
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-tree/nvim-web-devicons"
+		}
+	}
 })
