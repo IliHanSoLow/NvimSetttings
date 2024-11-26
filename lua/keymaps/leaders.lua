@@ -13,7 +13,7 @@ wk.add({
 	},
 	{ "<leader>b", group = "Buffers" },
 	{ "<leader>bi", "<cmd>Telescope buffers<cr>", desc = "ListBufs" },
-	{ "<leader>bk", "<cmd>bd<cr>", desc = "KillBuf" },
+	{ "<leader>bk", "<cmd>Bdelete<cr>", desc = "KillBuf" },
 	{ "<leader>bn", "<cmd>bnext<cr>", desc = "NextBuf" },
 	{ "<leader>bp", "<cmd>bprevious<cr>", desc = "PrevBuf" },
 	{ "<leader>f", group = "file" },

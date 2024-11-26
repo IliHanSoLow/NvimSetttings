@@ -97,7 +97,7 @@ if result ~= "" then
 end ]]
 
 -- folding
---[[ vim.opt.foldmethod = "expr"
+vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldcolumn = "0"
 vim.opt.foldlevel = 99
@@ -125,7 +125,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.tabstop = 2
 		vim.opt_local.expandtab = true
   end
-})]]
+})
 
 spaces_on = false
 vim.opt.listchars = { tab = "> ", trail = "-", eol = "$" }

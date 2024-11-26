@@ -498,5 +498,8 @@ require("lazy").setup({
 			"nvim-treesitter/nvim-treesitter",
 			"nvim-tree/nvim-web-devicons"
 		}
+	},
+	{
+		"https://github.com/moll/vim-bbye"
 	}
 })
