@@ -1,19 +1,6 @@
 require("lazy").setup({
 	"folke/lazy.nvim",
 	{
-		"folke/lazydev.nvim",
-		ft = "lua", -- only load on lua files
-		opts = {
-			library = {
-				-- See the configuration section for more details
-				-- Load luvit types when the `vim.uv` word is found
-				{ path = "luvit-meta/library", words = { "vim%.uv" } },
-			},
-		},
-	},
-	{ "Bilal2453/luvit-meta",                    lazy = true }, -- optional `vim.uv` typings
-
-	{
 		"nvim-telescope/telescope.nvim",
 		lazy = true,
 		branch = "0.1.x",
@@ -144,45 +131,6 @@ require("lazy").setup({
 			})
 		end,
 	},
-	--[[ {
-		"xiyaowong/transparent.nvim",
-		config = function()
-			require("transparent").setup({ -- Optional, you don't have to run setup.
-				groups = { -- table: default groups
-					"Normal",
-					"NormalNC",
-					"Comment",
-					"Constant",
-					"Special",
-					"Identifier",
-					"Statement",
-					"PreProc",
-					"Type",
-					"Underlined",
-					"Todo",
-					"String",
-					"Function",
-					"Conditional",
-					"Repeat",
-					"Operator",
-					"Structure",
-					"LineNr",
-					"NonText",
-					"SignColumn",
-					"CursorLine",
-					"CursorLineNr",
-					"StatusLine",
-					"StatusLineNC",
-					"EndOfBuffer",
-				},
-				extra_groups = {
-					"NormalFloat", -- plugins which have float panel such as Lazy, Mason, LspInfo
-					"NvimTreeNormal", -- NvimTree
-				},
-				exclude_groups = {}, -- table: groups you don't want to clear
-			})
-		end,
-	}, ]]
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
@@ -206,12 +154,11 @@ require("lazy").setup({
 		config = true,
 		lazy = true,
 	}, ]]
-	"easymotion/vim-easymotion",
 	{ "ThePrimeagen/vim-be-good", cmd = "VimBeGood", lazy = true },
-	{
-		"stevearc/conform.nvim",
-		opts = {},
-	},
+	-- {
+	-- 	"stevearc/conform.nvim",
+	-- 	opts = {},
+	-- },
 	--- Uncomment the two plugins below if you want to manage the language servers from neovim
 
 	{ "neovim/nvim-lspconfig" },
@@ -236,11 +183,11 @@ require("lazy").setup({
 		ft = "typst",
 		lazy = true,
 	},
-	{
+	--[[ {
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		opts = {}, -- this is equalent to setup({}) function
-	},
+	}, ]]
 	{
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
@@ -251,9 +198,10 @@ require("lazy").setup({
 		version = "*", -- recommended, use latest release instead of latest commit
 		lazy = true,
 		-- ft = "markdown",
-		-- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-		-- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
+		  -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
 		event = {
+			-- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+			-- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
 			"BufReadPre /bigssd/Dokumente/ObsidianVault/**.md",
 			"BufNewFile /bigssd/Dokumente/ObsidianVault/**.md",
 		},
@@ -339,7 +287,6 @@ require("lazy").setup({
 		},
 		opts = {},
 	},
-	"habamax/vim-godot",
 	--[[ {
 		"nvim-telescope/telescope-file-browser.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
@@ -353,14 +300,6 @@ require("lazy").setup({
 		},
 	},
 	{ "catppuccin/nvim",             name = "catppuccin", priority = 1000 },
-	{
-		"nvim-neotest/neotest",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"antoinemadec/FixCursorHold.nvim",
-			"nvim-treesitter/nvim-treesitter",
-		},
-	},
 	{ "tamago324/nlsp-settings.nvim" },
 	{ "uga-rosa/ccc.nvim",           lazy = true },
 	{
@@ -429,11 +368,6 @@ require("lazy").setup({
 			require("luasnip_snippets.common.snip_utils").setup()
 		end,
 	},
-	--[[ {
-		"sakhnik/nvim-gdb",
-		lazy = true,
-		cmd = {"GdbStart", "GdbStartLLDB"}
-	} ]]
 	require("plugins.dab"),
 	{
 		"stevearc/oil.nvim",
@@ -478,7 +412,7 @@ require("lazy").setup({
 			},
 			{
 				"<leader>tl",
-				"<cmd>lua require('diaglist').open_all_diagnostics()<cr>",
+				"<cmd>lua require('diaglist').open_bffer_diagnostics()<cr>",
 				desc = "Diagnostics in Buf",
 			},
 		},
@@ -488,16 +422,6 @@ require("lazy").setup({
 		"https://codeberg.org/esensar/nvim-dev-container",
 		dependencies = "nvim-treesitter/nvim-treesitter",
 		opts = {},
-	},
-	{
-		"OXY2DEV/markview.nvim",
-		lazy = false, -- Recommended
-		-- ft = "markdown" -- If you decide to lazy-load anyway
-
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"nvim-tree/nvim-web-devicons"
-		}
 	},
 	{
 		"https://github.com/moll/vim-bbye"

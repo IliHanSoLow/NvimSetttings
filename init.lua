@@ -7,7 +7,7 @@ if vim.g.vscode then
 	else
 		vim.cmd("source ~/.config/nvim/vscode/settings.vim")
 	end
-	
+
 else
 	if vim.g.neovide then
 		require("neovide")

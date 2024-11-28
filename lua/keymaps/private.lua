@@ -23,7 +23,7 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
--- vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "80"
 
 vim.g.mapleader = " "
 
@@ -97,13 +97,21 @@ if result ~= "" then
 end ]]
 
 -- folding
-vim.opt.foldmethod = "expr"
+vim.opt.foldmethod = "manual"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldcolumn = "0"
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 1
 vim.opt.foldtext = ""
 vim.opt.foldnestmax = 4 
+_G.toggle_folding = function()
+	if vim.opt.foldmethod ~= "manual" then
+		vim.opt.foldmethod = "manual"
+	else
+		vim.opt.foldmethod = "expr"
+	end
+end
+vim.api.nvim_create_user_command("ToggleFolding", _G.toggle_folding, {})
 
 -- better folding for nix files
 vim.api.nvim_create_autocmd("FileType", {

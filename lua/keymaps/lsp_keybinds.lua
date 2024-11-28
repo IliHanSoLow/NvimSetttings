@@ -3,30 +3,36 @@ local lspconfig = require("lspconfig")
 local nlspsettings = require("nlspsettings")
 
 local lspconfig_defaults = require("lspconfig").util.default_config
+Lsp_on = false
 lspconfig_defaults.capabilities =
 	vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP actions",
 	callback = function(event)
-		local opts = { buffer = event.buf }
+		if not Lsp_on then
+			vim.cmd("LspStop")
+		else
+			local opts = { buffer = event.buf }
 
-		vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-		vim.keymap.set("n", "gk", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
-		vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-		vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-		vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-		vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
-		vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-		vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
-		vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-		vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
-		vim.keymap.set("n", "gh", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+			vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+			vim.keymap.set("n", "gk", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
+			vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+			vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
+			vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+			vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
+			vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+			vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+			vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+			vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
+			vim.keymap.set("n", "gh", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+		end
 	end,
 })
 
 lspconfig.ocamllsp.setup({})
 lspconfig.clangd.setup({})
+lspconfig.cmake.setup({})
 lspconfig.rust_analyzer.setup({
 	cmd = { "rust-analyzer" },
 	--[[ settings = {
@@ -180,15 +186,15 @@ vim.api.nvim_create_user_command("ToggleDiagnostic", function()
 		signs = not vt,
 	})
 end, { desc = "toggle diagnostic" })
--- vim.api.nvim_create_user_command("ToggleLSP", function()
--- 	if Lsp_on then
--- 		Lsp_on = false
--- 		vim.cmd("LspStop")
--- 	else
--- 		Lsp_on = true
--- 		vim.cmd("LspStart")
--- 	end
--- end, { desc = "toggle diagnostic" })
+vim.api.nvim_create_user_command("ToggleLsp", function()
+	if Lsp_on then
+		Lsp_on = false
+		vim.cmd("LspStop")
+	else
+		Lsp_on = true
+		vim.cmd("LspStart")
+	end
+end, { desc = "toggle diagnostic" })
 
 --[[ lspconfig.nixd.setup({
    cmd = { "nixd" },
