@@ -34,22 +34,10 @@ lspconfig.ocamllsp.setup({})
 lspconfig.clangd.setup({})
 lspconfig.cmake.setup({})
 lspconfig.rust_analyzer.setup({
-	cmd = { "rust-analyzer" },
-	--[[ settings = {
-		["rust-analyzer"] = {
-			checkOnSave = {
-				allFeatures = true,
-				overrideCommand = {
-					"cargo",
-					"clippy",
-					"--workspace",
-					"--message-format=json",
-					"--all-targets",
-					"--all-features",
-				},
-			},
-		},
-	},]]
+	on_attach = function(client, bufnr)
+		-- inlay_hints = { enabled = true }
+		vim.lsp.inlay_hint.enable(true)
+	end,
 })
 lspconfig.nim_langserver.setup({})
 lspconfig.gopls.setup({})
@@ -78,6 +66,7 @@ vim.g.markdown_fenced_languages = {
 	"ts=typescript",
 }
 lspconfig.pylsp.setup({})
+lspconfig.typst_lsp.setup({})
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
@@ -115,7 +104,7 @@ cmp.setup({
 
 		-- Ctrl+Space to trigger completion menu
 		["<C-Space>"] = cmp.mapping.complete(),
-		["<C-e>"] = cmp.mapping.abort(),
+		["<C-g>"] = cmp.mapping.abort(),
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 
 		-- Scroll up and down in the completion documentation

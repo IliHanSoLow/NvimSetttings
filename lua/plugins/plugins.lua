@@ -161,7 +161,9 @@ require("lazy").setup({
 	-- },
 	--- Uncomment the two plugins below if you want to manage the language servers from neovim
 
-	{ "neovim/nvim-lspconfig" },
+	{
+		"neovim/nvim-lspconfig",
+	},
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{
 		"hrsh7th/nvim-cmp",
@@ -178,11 +180,6 @@ require("lazy").setup({
 		dependencies = { "rafamadriz/friendly-snippets" },
 	},
 	"saadparwaiz1/cmp_luasnip",
-	{
-		"kaarmu/typst.vim",
-		ft = "typst",
-		lazy = true,
-	},
 	--[[ {
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
@@ -332,7 +329,7 @@ require("lazy").setup({
 		config = function()
 			require("mini.basics").setup({})
 			require("mini.ai").setup({})
-			require("mini.jump").setup({})
+			-- require("mini.jump").setup({})
 			require("mini.surround").setup({
 				mappings = {
 					add = "<leader>sa",
@@ -373,7 +370,9 @@ require("lazy").setup({
 		"stevearc/oil.nvim",
 		---@module 'oil'
 		---@type oil.SetupOpts
-		opts = {},
+		opts = {
+			default_file_explorer = false,
+ 		},
 		-- Optional dependencies
 		dependencies = { { "echasnovski/mini.icons", opts = {} } },
 		-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
@@ -425,5 +424,11 @@ require("lazy").setup({
 	},
 	{
 		"https://github.com/moll/vim-bbye"
-	}
+	},
+	{
+		"chomosuke/typst-preview.nvim",
+		ft = "typst",
+		version = "1.*",
+		opts = {},
+	},
 })

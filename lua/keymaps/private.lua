@@ -38,6 +38,8 @@ vim.opt.wrap = true
 vim.cmd("set cursorline | highlight clear CursorLine")
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#c6a0f6", bold = true })
 
+--spell link https://ftp.nluug.nl/vim/runtime/spell/
+
 --------------------------------------------------
 
 vim.keymap.set("v", "J", ":m'>+1<CR>gv=gv")
