@@ -1,6 +1,12 @@
 vim.cmd("set number relativenumber")
+is_windows = string.find(vim.loop.os_uname().version, "Windows") ~= nil
+if (is_windows) then
+	hostname = os.execute("systeminfo | rg \"Hostname\"")
+else
+	hostname = os.execute("uname -a")
+end
+
 if vim.g.vscode then
-	local is_windows = string.find(vim.loop.os_uname().version, "Windows") ~= nil
 	if (is_windows) then
 		vim.cmd("source ~\\AppData\\Local\\nvim\\vscode\\settings.vim")
 		vim.cmd("set clipboard=unnamedplus")

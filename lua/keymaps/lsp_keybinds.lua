@@ -66,7 +66,6 @@ vim.g.markdown_fenced_languages = {
 	"ts=typescript",
 }
 lspconfig.pylsp.setup({})
-lspconfig.typst_lsp.setup({})
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 

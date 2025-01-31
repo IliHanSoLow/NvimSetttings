@@ -28,14 +28,9 @@ wk.add({
 	{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Find in Help" },
 	{ "<leader>fm", "<cmd>Telescope man_pages<cr>", desc = "Find in ManPages" },
 	{ "<leader>ft", "<cmd>Telescope filetypes<cr>", desc = "Find File" },
+	{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Telescope grep" },
 	{ "<leader>fn", "<cmd>enew<cr>", desc = "New File" },
 	{ "<leader>fc", ":e<space>", desc = "Open new file with name" },
-	{
-		"<leader>fg",
-		function()
-			builtin.grep_string({ search = vim.fn.input("Grep > ") })
-		end,
-	},
 	{
 		"<leader>fp",
 		function()
