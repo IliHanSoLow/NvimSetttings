@@ -7,7 +7,11 @@ vim.opt.smartindent = true
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.config/nvim/undodir"
+if (is_windows) then
+	vim.opt.undodir = os.getenv("UserProfile") .. "/AppData/local/nvim/undodir"
+else
+	vim.opt.undodir = os.getenv("HOME") .. "/.config/nvim/undodir"
+end
 vim.opt.undofile = true
 
 vim.opt.hlsearch = false

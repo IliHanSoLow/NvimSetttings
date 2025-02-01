@@ -6,6 +6,17 @@ require("lazy").setup({
 		branch = "0.1.x",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
+			local function getBaseDirs()
+				if (string.find(hostname, "LegionOfNix") ~= nil) then
+					return {
+						"/bigssd/Dokumente/git/",
+					}
+				elseif (string.find(hostname, "P01250755") ~= nil) then
+					return{
+						os.getenv("UserProfile") .. "/Documents/coding"
+					}
+				end
+			end
 			require("telescope").setup({
 				extensions = {
 					["ui-select"] = {
@@ -20,9 +31,7 @@ require("lazy").setup({
 
 					-- Config for projects
 					project = {
-						base_dirs = {
-							"/bigssd/Dokumente/git/",
-						},
+						base_dirs = getBaseDirs()
 					},
 				},
 			})
@@ -36,7 +45,7 @@ require("lazy").setup({
 	{ "nvim-telescope/telescope-project.nvim",   lazy = true },
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "make",
+		build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
 		lazy = true,
 	},
 	{
@@ -192,6 +201,9 @@ require("lazy").setup({
 	},
 	{
 		"epwalsh/obsidian.nvim",
+		enabled = function()
+			return string.find(hostname, "LegionOfNix") ~= nil
+		end,
 		version = "*", -- recommended, use latest release instead of latest commit
 		lazy = true,
 		-- ft = "markdown",
