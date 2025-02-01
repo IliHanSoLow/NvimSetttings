@@ -43,15 +43,17 @@ lspconfig.nim_langserver.setup({})
 lspconfig.gopls.setup({})
 lspconfig.jdtls.setup({})
 lspconfig.lua_ls.setup({})
-lspconfig.nil_ls.setup({
-	settings = {
-		['nil'] = {
-			formatting = {
-				command = {"alejandra"}
-			}
-		}
-	}
-})
+lspconfig.basedpyright.setup({})
+-- lspconfig.nil_ls.setup({
+-- 	settings = {
+-- 		['nil'] = {
+-- 			formatting = {
+-- 				command = {"alejandra"}
+-- 			}
+-- 		}
+-- 	}
+-- })
+lspconfig.nixd.setup({})
 lspconfig.denols.setup({
 	on_attach = on_attach,
 	root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
@@ -66,6 +68,10 @@ vim.g.markdown_fenced_languages = {
 	"ts=typescript",
 }
 lspconfig.pylsp.setup({})
+<<<<<<< Updated upstream
+=======
+-- lspconfig.typst_lsp.setup({})
+>>>>>>> Stashed changes
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 

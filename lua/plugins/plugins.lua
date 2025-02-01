@@ -7,9 +7,9 @@ require("lazy").setup({
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			local function getBaseDirs()
-				if (string.find(hostname, "LegionOfNix") ~= nil) then
+				if (string.find(hostname, "legionOfNix") ~= nil) then
 					return {
-						"/bigssd/Dokumente/git/",
+						"/bigssd/Dokumente/programming/",
 					}
 				elseif (string.find(hostname, "P01250755") ~= nil) then
 					return{
@@ -31,7 +31,13 @@ require("lazy").setup({
 
 					-- Config for projects
 					project = {
+<<<<<<< Updated upstream
 						base_dirs = getBaseDirs()
+=======
+						base_dirs = {
+							"/bigssd/Dokumente/programming/",
+						},
+>>>>>>> Stashed changes
 					},
 				},
 			})
@@ -202,7 +208,7 @@ require("lazy").setup({
 	{
 		"epwalsh/obsidian.nvim",
 		enabled = function()
-			return string.find(hostname, "LegionOfNix") ~= nil
+			return string.find(hostname, "legionOfNix") ~= nil
 		end,
 		version = "*", -- recommended, use latest release instead of latest commit
 		lazy = true,
@@ -442,5 +448,9 @@ require("lazy").setup({
 		ft = "typst",
 		version = "1.*",
 		opts = {},
+	},
+	{
+    "OXY2DEV/markview.nvim",
+    lazy = false
 	},
 })

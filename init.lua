@@ -1,9 +1,13 @@
 vim.cmd("set number relativenumber")
 is_windows = string.find(vim.loop.os_uname().version, "Windows") ~= nil
 if (is_windows) then
-	hostname = os.execute("systeminfo | rg \"Hostname\"")
+	local handle = io.popen("svsteminfo | rg \"Hostname\"")
+	hostname = handle:read("*a")
+	handle:close()
 else
-	hostname = os.execute("uname -a")
+	local handle = io.popen("uname -a")
+	hostname = handle:read("*a")
+	handle:close()
 end
 
 if vim.g.vscode then

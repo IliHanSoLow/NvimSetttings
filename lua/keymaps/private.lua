@@ -39,6 +39,9 @@ vim.opt.smartcase = true
 vim.opt.linebreak = false
 vim.opt.wrap = true
 
+vim.opt.encoding = "utf-8"
+vim.opt.fileencoding = "utf-8"
+
 vim.cmd("set cursorline | highlight clear CursorLine")
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#c6a0f6", bold = true })
 
