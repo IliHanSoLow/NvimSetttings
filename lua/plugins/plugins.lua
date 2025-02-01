@@ -31,13 +31,7 @@ require("lazy").setup({
 
 					-- Config for projects
 					project = {
-<<<<<<< Updated upstream
 						base_dirs = getBaseDirs()
-=======
-						base_dirs = {
-							"/bigssd/Dokumente/programming/",
-						},
->>>>>>> Stashed changes
 					},
 				},
 			})
