@@ -31,13 +31,7 @@ wk.add({
 	{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Telescope grep" },
 	{ "<leader>fn", "<cmd>enew<cr>", desc = "New File" },
 	{ "<leader>fc", ":e<space>", desc = "Open new file with name" },
-	{
-		"<leader>fp",
-		function()
-			require'telescope'.extensions.project.project{}
-		end,
-	},
-		desc = "Open file Grep",
+	{ "<leader>fp", "<cmd>Telescope project<cr>", desc = "Find Project" },
 	{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File" },
 	{ "<leader>fs", "<cmd>w<cr>", desc = "Save" },
 	{ "<leader>g", group = "git" },

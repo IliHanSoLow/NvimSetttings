@@ -91,6 +91,7 @@ end
 vim.api.nvim_create_user_command("ToggleColorscheme", _G.toggle_colorscheme, {})
 
 vim.keymap.set("n", "<leader>ok", "<cmd>cd /bigssd/Dokumente/ObsidianVault/<CR>")
+vim.keymap.set('n', '<Leader>gd', '<C-]>', { noremap = true, silent = true })
 
 -- Disable autoformat
 vim.g.disable_autoformat = true
@@ -127,6 +128,15 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "nix",
   callback = function()
     vim.opt_local.foldlevel = 3
+  end
+})
+
+-- better behaviour for yaml files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "typst",
+  callback = function()
+    vim.opt_local.tw = 80
+    vim.opt_local.formatoptions:append("a")
   end
 })
 

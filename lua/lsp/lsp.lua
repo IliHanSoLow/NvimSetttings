@@ -3,16 +3,16 @@ local lspconfig = require("lspconfig")
 local nlspsettings = require("nlspsettings")
 
 local lspconfig_defaults = require("lspconfig").util.default_config
--- Lsp_on = false
+Lsp_on = false
 lspconfig_defaults.capabilities =
-	vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP actions",
 	callback = function(event)
-		-- if not Lsp_on then
-			-- vim.cmd("LspStop")
-		-- else
+		if not Lsp_on then
+			vim.cmd("LspStop")
+		else
 			local opts = { buffer = event.buf }
 
 			vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
 			vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
 			vim.keymap.set("n", "gh", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-		-- end
+		end
 	end,
 })
 
@@ -44,6 +44,7 @@ lspconfig.gopls.setup({})
 lspconfig.jdtls.setup({})
 lspconfig.lua_ls.setup({})
 lspconfig.basedpyright.setup({})
+lspconfig.gdscript.setup({})
 -- lspconfig.nil_ls.setup({
 -- 	settings = {
 -- 		['nil'] = {
@@ -54,6 +55,7 @@ lspconfig.basedpyright.setup({})
 -- 	}
 -- })
 lspconfig.nixd.setup({})
+lspconfig.tinymist.setup({})
 lspconfig.denols.setup({
 	on_attach = on_attach,
 	root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
@@ -178,7 +180,7 @@ vim.api.nvim_create_user_command("ToggleDiagnostic", function()
 		signs = not vt,
 	})
 end, { desc = "toggle diagnostic" })
---[[ vim.api.nvim_create_user_command("ToggleLsp", function()
+vim.api.nvim_create_user_command("ToggleLsp", function()
 	if Lsp_on then
 		Lsp_on = false
 		vim.cmd("LspStop")
@@ -186,26 +188,26 @@ end, { desc = "toggle diagnostic" })
 		Lsp_on = true
 		vim.cmd("LspStart")
 	end
-end, { desc = "toggle diagnostic" }) ]]
+end, { desc = "toggle diagnostic" })
 
 --[[ lspconfig.nixd.setup({
    cmd = { "nixd" },
    settings = {
-      nixd = {
-         nixpkgs = {
+	  nixd = {
+		 nixpkgs = {
 			expr = "import (builtins.getFlake \"/home/ilian/dotfiles/nixos\").inputs.nixpkgs { }"
-         },
-         formatting = {
+		 },
+		 formatting = {
 			command = {"alejandra"}
-         },
-         options = {
+		 },
+		 options = {
 			nixos = {
 				expr = "import (builtins.getFlake \"/home/ilian/dotfiles/nixos\").nixosConfigurations.legionOfNix.options"
 			},
 			home_manager = {
 				expr = "import (builtins.getFlake \"/home/ilian/dotfiles/nixos\").homeConfigurations.\"ilian@legionOfNix\".options"
 			}
-         },
-      },
+		 },
+	  },
    },
 }) ]]

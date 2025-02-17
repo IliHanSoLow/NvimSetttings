@@ -43,4 +43,6 @@ else
 
 	require("keymaps")
 	require("plugins.notify")
+	require("automatic")
+	require("lsp")
 end
