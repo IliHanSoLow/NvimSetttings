@@ -75,6 +75,8 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 
+vim.keymap.set('i', '<Space>', '<Space><C-g>u', { noremap = true, silent = true })
+
 ---------------------------------------
 _G.toggle_colorscheme = function()
 	-- Check if the current colorscheme is catppuccin-machiato
